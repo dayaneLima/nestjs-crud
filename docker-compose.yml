@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  crud-nestjs:
+    platform: linux/x86_64
+    container_name: crud-nestjs
+    build:
+      context: ./
+      # target: "production"
+      target: "development"
+    volumes:
+      - ./:/app
+    ports:
+      - "8080:8080"
+    networks: 
+      - local
+
+networks: 
+  local:
+    name: local

@@ -1,0 +1,13 @@
+#####   COMANDOS DOCKER  ##########
+# Buildar a imagem
+docker-compose build
+
+# Subir o container
+docker-compose up -d
+
+# Matar o container
+docker-compose down
+
+# Entrar no terminal do container
+docker exec -it crud-nestjs bash
+####################################

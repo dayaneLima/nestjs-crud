@@ -2,7 +2,7 @@
 ## Description
 
 Crud simples feito com [Nest](https://github.com/nestjs/nest) framework e TypeScript. <br />
-Utilizando módulos, arquitetura em camadas, interfaces e IoC.
+Utilizando módulos, validações síncronas e assíncronas, arquitetura em camadas, interfaces e IoC.
 
 ## Installation
 

@@ -11,3 +11,12 @@ docker-compose down
 # Entrar no terminal do container
 docker exec -it crud-nestjs bash
 ####################################
+
+#####   BIBLIOTECAS  ##########
+# Validações
+npm install class-validator class-transformer
+
+# UUID
+npm install uuid
+npm install -D @types/uuid
+####################################

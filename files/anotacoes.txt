@@ -12,11 +12,20 @@ docker-compose down
 docker exec -it crud-nestjs bash
 ####################################
 
-#####   BIBLIOTECAS  ##########
+##########   BIBLIOTECAS  ##########
 # Validações
 npm install class-validator class-transformer
 
 # UUID
 npm install uuid
 npm install -D @types/uuid
+
+# TypeOrm (Mapeamento banco de dados)
+npm install @nestjs/typeorm typeorm
+
+# Postgres
+npm install pg
+
+# Arquivo de configuração (.env)
+npm install @nestjs/config
 ####################################

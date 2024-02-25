@@ -18,4 +18,23 @@ export class UsuarioRepository implements IUsuarioRepository {
 	public async verificarExiste(email: string): Promise<boolean> {
 		return this.usuarios.find((u: Usuario) => u.email === email) !== undefined;
 	}
+
+	public async atualizar(id: string, usuario: Partial<Usuario>): Promise<Usuario> {
+		const usuarioAtualizacao = await this.obter(id);
+
+		Object.entries(usuario).forEach(([chave, valor]) => {
+			if (chave === "id") return;
+			usuarioAtualizacao[chave] = valor;
+		});
+
+		return usuarioAtualizacao;
+	}
+
+	public async obter(id: string): Promise<Usuario> {
+		return this.usuarios.find((u: Usuario) => u.id === id);
+	}
+
+	public async excluir(id: string): Promise<void> {
+		this.usuarios = this.usuarios.filter((u: Usuario) => u.id !== id);
+	}
 }

@@ -13,7 +13,7 @@ export class UsuarioController {
 	@Get()
 	async listar(): Promise<ListagemUsuarioDTO[]> {
 		const usuarios = await this.usuarioService.listar();
-		return usuarios.map((usuario) => new ListagemUsuarioDTO(usuario.id, usuario.nome));
+		return usuarios.map((usuario) => new ListagemUsuarioDTO(usuario.id, usuario.nome, usuario.email));
 	}
 
 	@Get("/:id")

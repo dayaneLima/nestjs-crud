@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { Usuario } from "../domain/usuario.entity";
 import { IUsuarioRepository } from "../domain/usuario.interface.repository";
 import { IUsuarioService } from "./usuario.interface.service";
@@ -21,7 +21,7 @@ export class UsuarioService implements IUsuarioService {
 
 	public async atualizar(id: string, usuario: Partial<Usuario>): Promise<Usuario> {
 		if (!(await this.obter(id))) {
-			throw new Error("Usuário não encontrado");
+			throw new NotFoundException("Usuário não encontrado");
 		}
 
 		return await this.usuarioRepository.atualizar(id, usuario);
@@ -31,7 +31,7 @@ export class UsuarioService implements IUsuarioService {
 		const usuario = await this.usuarioRepository.obter(id);
 
 		if (!usuario) {
-			throw new Error("Usuário não encontrado");
+			throw new NotFoundException("Usuário não encontrado");
 		}
 
 		return usuario;
@@ -39,7 +39,7 @@ export class UsuarioService implements IUsuarioService {
 
 	public async excluir(id: string): Promise<void> {
 		if (!(await this.obter(id))) {
-			throw new Error("Usuário não encontrado");
+			throw new NotFoundException("Usuário não encontrado");
 		}
 
 		await this.usuarioRepository.excluir(id);

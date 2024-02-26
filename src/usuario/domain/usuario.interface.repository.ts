@@ -1,4 +1,4 @@
-import { Usuario } from "./usuario.entity";
+import { Usuario } from './usuario.entity';
 
 export interface IUsuarioRepository {
 	inserir(usuario: Usuario): Promise<Usuario>;
@@ -9,4 +9,4 @@ export interface IUsuarioRepository {
 	excluir(id: string): Promise<void>;
 }
 
-export const IUsuarioRepository = Symbol("IUsuarioRepository");
+export const IUsuarioRepository = Symbol('IUsuarioRepository');

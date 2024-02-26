@@ -1,7 +1,8 @@
-import { Inject, Injectable, NotFoundException } from "@nestjs/common";
-import { Usuario } from "../domain/usuario.entity";
-import { IUsuarioRepository } from "../domain/usuario.interface.repository";
-import { IUsuarioService } from "./usuario.interface.service";
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Usuario } from '../domain/usuario.entity';
+import { IUsuarioRepository } from '../domain/usuario.interface.repository';
+import { IUsuarioService } from './usuario.interface.service';
+import { ListagemUsuarioDTO } from '../api/dto/listagem-usuario.dto';
 
 @Injectable()
 export class UsuarioService implements IUsuarioService {
@@ -11,8 +12,9 @@ export class UsuarioService implements IUsuarioService {
 		return await this.usuarioRepository.inserir(usuario);
 	}
 
-	public async listar(): Promise<Usuario[]> {
-		return await this.usuarioRepository.listar();
+	public async listar(): Promise<ListagemUsuarioDTO[]> {
+		const usuarios = await this.usuarioRepository.listar();
+		return usuarios.map((usuario) => new ListagemUsuarioDTO(usuario.id, usuario.nome, usuario.email));
 	}
 
 	public async verificarUsuarioExiste(email: string): Promise<boolean> {
@@ -20,10 +22,7 @@ export class UsuarioService implements IUsuarioService {
 	}
 
 	public async atualizar(id: string, usuario: Partial<Usuario>): Promise<Usuario> {
-		if (!(await this.obter(id))) {
-			throw new NotFoundException("Usuário não encontrado");
-		}
-
+		await this.obter(id);
 		return await this.usuarioRepository.atualizar(id, usuario);
 	}
 
@@ -31,17 +30,14 @@ export class UsuarioService implements IUsuarioService {
 		const usuario = await this.usuarioRepository.obter(id);
 
 		if (!usuario) {
-			throw new NotFoundException("Usuário não encontrado");
+			throw new NotFoundException('Usuário não encontrado');
 		}
 
 		return usuario;
 	}
 
 	public async excluir(id: string): Promise<void> {
-		if (!(await this.obter(id))) {
-			throw new NotFoundException("Usuário não encontrado");
-		}
-
+		await this.obter(id);
 		await this.usuarioRepository.excluir(id);
 	}
 }

@@ -1,9 +1,13 @@
-import { Injectable } from "@nestjs/common";
-import { Usuario } from "../domain/usuario.entity";
-import { IUsuarioRepository } from "../domain/usuario.interface.repository";
+import { Injectable } from '@nestjs/common';
+import { Usuario } from '../domain/usuario.entity';
+import { IUsuarioRepository } from '../domain/usuario.interface.repository';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsuarioRepository implements IUsuarioRepository {
+	constructor(@InjectRepository(Usuario) private readonly usuarioTypeOrmRepository: Repository<Usuario>) {}
+
 	private usuarios: Usuario[] = [];
 
 	public async inserir(usuario: Usuario): Promise<Usuario> {
@@ -12,7 +16,8 @@ export class UsuarioRepository implements IUsuarioRepository {
 	}
 
 	public async listar(): Promise<Usuario[]> {
-		return this.usuarios;
+		return await this.usuarioTypeOrmRepository.find();
+		// return this.usuarios;
 	}
 
 	public async verificarExiste(email: string): Promise<boolean> {
@@ -23,7 +28,7 @@ export class UsuarioRepository implements IUsuarioRepository {
 		const usuarioAtualizacao = await this.obter(id);
 
 		Object.entries(usuario).forEach(([chave, valor]) => {
-			if (chave === "id") return;
+			if (chave === 'id') return;
 			usuarioAtualizacao[chave] = valor;
 		});
 

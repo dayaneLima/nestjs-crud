@@ -1,9 +1,9 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { UsuarioService } from "./usuario.service";
-import { UsuarioRepositoryProvider, UsuarioServiceProvider } from "../providers/usuario.provider";
-import { EmailEhUnicoValidator } from "../api/validations/email-eh-unico.validator";
+import { Test, TestingModule } from '@nestjs/testing';
+import { UsuarioService } from './usuario.service';
+import { UsuarioRepositoryProvider, UsuarioServiceProvider } from '../providers/usuario.provider';
+import { EmailEhUnicoValidator } from '../api/validations/email-eh-unico.validator';
 
-describe("UsuarioService", () => {
+describe('UsuarioService', () => {
 	let service: UsuarioService;
 
 	beforeEach(async () => {
@@ -13,12 +13,12 @@ describe("UsuarioService", () => {
 		service = module.get<UsuarioService>(UsuarioService);
 	});
 
-	it("should be defined", () => {
+	it('should be defined', () => {
 		expect(service).toBeDefined();
 	});
 
-	describe("inserir", () => {
-		it("criar usuário", () => {
+	describe('inserir', () => {
+		it('criar usuário', () => {
 			//   // Arrange
 			//   service.tweets = [];
 			//   const payload = "This is my tweet";

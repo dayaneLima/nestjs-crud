@@ -1,37 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { Estacionamento } from '../domain/estacionamento.entity';
 import { IEstacionamentoRepository } from '../domain/estacionamento.interface.repository';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class EstacionamentoRepository implements IEstacionamentoRepository {
+	constructor(@InjectRepository(Estacionamento) private readonly estacionamentoTypeOrmRepository: Repository<Estacionamento>) {}
 	private estacionamentos: Estacionamento[] = [];
 
 	public async inserir(estacionamento: Estacionamento): Promise<Estacionamento> {
-		this.estacionamentos.push(estacionamento);
-		return estacionamento;
+		return await this.estacionamentoTypeOrmRepository.save(estacionamento);
 	}
 
 	public async listar(): Promise<Estacionamento[]> {
-		return this.estacionamentos;
+		return await this.estacionamentoTypeOrmRepository.find();
 	}
 
-	public async atualizar(id: string, estacionamento: Partial<Estacionamento>): Promise<Estacionamento> {
-		const dadosNaoAtualizaveis = ['id', 'usuarioId'];
-		const estacionamentoAtualizacao = await this.obter(id);
-
-		Object.entries(estacionamento).forEach(([chave, valor]) => {
-			if (dadosNaoAtualizaveis.includes(chave)) return;
-			estacionamentoAtualizacao[chave] = valor;
-		});
-
-		return estacionamentoAtualizacao;
+	public async atualizar(id: string, estacionamento: Partial<Estacionamento>): Promise<boolean> {
+		return (await this.estacionamentoTypeOrmRepository.update(id, estacionamento)).affected > 0;
 	}
 
 	public async obter(id: string): Promise<Estacionamento> {
-		return this.estacionamentos.find((u: Estacionamento) => u.id === id);
+		return await this.estacionamentoTypeOrmRepository.findOne({
+			where: { id: id }
+		});
 	}
 
-	public async excluir(id: string): Promise<void> {
-		this.estacionamentos = this.estacionamentos.filter((u: Estacionamento) => u.id !== id);
+	public async excluir(id: string): Promise<boolean> {
+		return (await this.estacionamentoTypeOrmRepository.delete(id)).affected > 0;
 	}
 }

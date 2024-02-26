@@ -15,9 +15,10 @@ export class EstacionamentoService implements IEstacionamentoService {
 		return await this.estacionamentoRepository.listar();
 	}
 
-	public async atualizar(id: string, estacionamento: Partial<Estacionamento>): Promise<Estacionamento> {
-		await this.obter(id);
-		return await this.estacionamentoRepository.atualizar(id, estacionamento);
+	public async atualizar(id: string, estacionamento: Partial<Estacionamento>): Promise<void> {
+		if (!(await this.estacionamentoRepository.atualizar(id, estacionamento))) {
+			throw new NotFoundException('Estacionamento não encontrado');
+		}
 	}
 
 	public async obter(id: string): Promise<Estacionamento> {
@@ -31,7 +32,8 @@ export class EstacionamentoService implements IEstacionamentoService {
 	}
 
 	public async excluir(id: string): Promise<void> {
-		await this.obter(id);
-		await this.estacionamentoRepository.excluir(id);
+		if (!(await this.estacionamentoRepository.excluir(id))) {
+			throw new NotFoundException('Estacionamento não encontrado');
+		}
 	}
 }

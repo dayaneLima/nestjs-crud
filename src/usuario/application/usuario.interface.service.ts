@@ -5,7 +5,7 @@ export interface IUsuarioService {
 	inserir(usuario: Usuario): Promise<Usuario>;
 	listar(): Promise<ListagemUsuarioDTO[]>;
 	verificarUsuarioExiste(email: string): Promise<boolean>;
-	atualizar(id: string, usuario: Partial<Usuario>): Promise<Usuario>;
+	atualizar(id: string, usuario: Partial<Usuario>): Promise<void>;
 	obter(id: string): Promise<Usuario>;
 	excluir(id: string): Promise<void>;
 }

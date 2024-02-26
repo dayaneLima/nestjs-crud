@@ -21,9 +21,10 @@ export class UsuarioService implements IUsuarioService {
 		return await this.usuarioRepository.verificarExiste(email);
 	}
 
-	public async atualizar(id: string, usuario: Partial<Usuario>): Promise<Usuario> {
-		await this.obter(id);
-		return await this.usuarioRepository.atualizar(id, usuario);
+	public async atualizar(id: string, usuario: Partial<Usuario>): Promise<void> {
+		if (!(await this.usuarioRepository.atualizar(id, usuario))) {
+			throw new NotFoundException('Usuário não encontrado');
+		}
 	}
 
 	public async obter(id: string): Promise<Usuario> {
@@ -37,7 +38,8 @@ export class UsuarioService implements IUsuarioService {
 	}
 
 	public async excluir(id: string): Promise<void> {
-		await this.obter(id);
-		await this.usuarioRepository.excluir(id);
+		if (!(await this.usuarioRepository.excluir(id))) {
+			throw new NotFoundException('Usuário não encontrado');
+		}
 	}
 }

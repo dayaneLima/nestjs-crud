@@ -32,8 +32,8 @@ export class UsuarioController {
 	}
 
 	@Put('/:id')
-	async atualizar(@Param('id') id: string, @Body() usuarioDTO: AtualizacaoUsuarioDTO): Promise<Usuario> {
-		return await this.usuarioService.atualizar(id, usuarioDTO);
+	async atualizar(@Param('id') id: string, @Body() usuarioDTO: AtualizacaoUsuarioDTO): Promise<void> {
+		await this.usuarioService.atualizar(id, usuarioDTO);
 	}
 
 	@Delete('/:id')

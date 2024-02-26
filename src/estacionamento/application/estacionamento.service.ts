@@ -2,6 +2,7 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { IEstacionamentoService } from './estacionamento.interface.service';
 import { Estacionamento } from '../domain/estacionamento.entity';
 import { IEstacionamentoRepository } from '../domain/estacionamento.interface.repository';
+import { EstacionamentoRetornoDTO } from '../api/dto/estacionamento-retorno.dto';
 
 @Injectable()
 export class EstacionamentoService implements IEstacionamentoService {
@@ -11,8 +12,9 @@ export class EstacionamentoService implements IEstacionamentoService {
 		return await this.estacionamentoRepository.inserir(estacionamento);
 	}
 
-	public async listar(): Promise<Estacionamento[]> {
-		return await this.estacionamentoRepository.listar();
+	public async listar(): Promise<EstacionamentoRetornoDTO[]> {
+		const estacionamentos = await this.estacionamentoRepository.listar();
+		return estacionamentos.map((estacionamento) => new EstacionamentoRetornoDTO(estacionamento.id, estacionamento.nome));
 	}
 
 	public async atualizar(id: string, estacionamentoParcial: Partial<Estacionamento>): Promise<Estacionamento> {

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Usuario } from '../domain/usuario.entity';
 import { IUsuarioRepository } from '../domain/usuario.interface.repository';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Not, Repository } from 'typeorm';
 
 @Injectable()
 export class UsuarioRepository implements IUsuarioRepository {
@@ -16,10 +16,18 @@ export class UsuarioRepository implements IUsuarioRepository {
 		return await this.usuarioTypeOrmRepository.find();
 	}
 
-	public async verificarExiste(email: string): Promise<boolean> {
+	public async verificarExiste(email: string, id?: string): Promise<boolean> {
+		if (id) {
+			return (
+				(await this.usuarioTypeOrmRepository.count({
+					where: { email, id: Not(id) }
+				})) > 0
+			);
+		}
+
 		return (
 			(await this.usuarioTypeOrmRepository.count({
-				where: { email: email }
+				where: { email }
 			})) > 0
 		);
 	}

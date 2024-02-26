@@ -1,5 +1,6 @@
 import { EntityCore } from 'src/core/domain/entity.core';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, UpdateDateColumn } from 'typeorm';
+import { EstacionamentoImagem } from './estacionamento-imagem.entity';
 // import { FormaPagamento } from './forma-pagamento.entity';
 // import { EstacionamentoImagem } from './estacionamento-imagem.entity';
 
@@ -11,7 +12,8 @@ export class Estacionamento extends EntityCore {
 	@Column({ name: 'nome', length: 150, nullable: false })
 	nome: string;
 
-	// imagens: EstacionamentoImagem[];
+	@OneToMany(() => EstacionamentoImagem, (estacionamentoImagem) => estacionamentoImagem.estacionamento, { cascade: true, eager: true })
+	imagens: EstacionamentoImagem[];
 
 	@CreateDateColumn({ name: 'created_at' })
 	createdAt: string;

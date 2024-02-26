@@ -1,5 +1,6 @@
 import { EntityCore } from 'src/core/domain/entity.core';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
+import { Estacionamento } from './estacionamento.entity';
 
 @Entity({ name: 'estacionamento_imagens' })
 export class EstacionamentoImagem extends EntityCore {
@@ -9,6 +10,6 @@ export class EstacionamentoImagem extends EntityCore {
 	@Column({ name: 'descricao', length: 100, nullable: false })
 	descricao: string;
 
-	@Column({ name: 'estacionamento_id', length: 100, nullable: false })
-	estacionamentoId: string;
+	@ManyToOne(() => Estacionamento, (estacionamento) => estacionamento.imagens, { orphanedRowAction: 'delete', onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+	estacionamento: Estacionamento;
 }

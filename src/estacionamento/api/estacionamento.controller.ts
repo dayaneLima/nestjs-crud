@@ -1,7 +1,7 @@
 import { Controller, Inject, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { IEstacionamentoService } from '../application/estacionamento.interface.service';
 import { Estacionamento } from '../domain/estacionamento.entity';
-import { ListagemEstacionamentoDTO } from './dto/listagem-estacionamento.dto';
+import { EstacionamentoRetornoDTO } from './dto/estacionamento-retorno.dto';
 import { InsercaoEstacionamentoDTO } from './dto/insercao-estacionamento.dto';
 import { v4 as uuid } from 'uuid';
 import { AtualizacaoProdutoDTO } from './dto/atualizacao-estacionamento.dto';
@@ -11,9 +11,8 @@ export class EstacionamentoController {
 	constructor(@Inject(IEstacionamentoService) private readonly estacionamentoService: IEstacionamentoService) {}
 
 	@Get()
-	async listar(): Promise<ListagemEstacionamentoDTO[]> {
-		const estacionamentos = await this.estacionamentoService.listar();
-		return estacionamentos.map((estacionamento) => new ListagemEstacionamentoDTO(estacionamento.nome));
+	async listar(): Promise<EstacionamentoRetornoDTO[]> {
+		return await this.estacionamentoService.listar();
 	}
 
 	@Get('/:id')
@@ -27,6 +26,7 @@ export class EstacionamentoController {
 		estacionamento.id = uuid();
 		estacionamento.nome = estacionamentoDTO.nome;
 		estacionamento.usuarioId = estacionamentoDTO.usuarioId;
+		estacionamento.imagens = estacionamentoDTO.imagens;
 
 		return await this.estacionamentoService.inserir(estacionamento);
 	}

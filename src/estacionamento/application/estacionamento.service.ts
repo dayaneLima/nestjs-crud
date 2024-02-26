@@ -15,10 +15,17 @@ export class EstacionamentoService implements IEstacionamentoService {
 		return await this.estacionamentoRepository.listar();
 	}
 
-	public async atualizar(id: string, estacionamento: Partial<Estacionamento>): Promise<void> {
-		if (!(await this.estacionamentoRepository.atualizar(id, estacionamento))) {
+	public async atualizar(id: string, estacionamentoParcial: Partial<Estacionamento>): Promise<Estacionamento> {
+		const estacionamento = await this.estacionamentoRepository.obter(id);
+
+		if (!estacionamento) {
 			throw new NotFoundException('Estacionamento não encontrado');
 		}
+
+		Object.assign(estacionamento, estacionamentoParcial);
+		await this.estacionamentoRepository.atualizar(id, estacionamento);
+
+		return estacionamento;
 	}
 
 	public async obter(id: string): Promise<Estacionamento> {

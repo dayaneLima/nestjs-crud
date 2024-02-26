@@ -32,8 +32,8 @@ export class EstacionamentoController {
 	}
 
 	@Put('/:id')
-	async atualizar(@Param('id') id: string, @Body() produtoDTO: AtualizacaoProdutoDTO): Promise<void> {
-		await this.estacionamentoService.atualizar(id, produtoDTO);
+	async atualizar(@Param('id') id: string, @Body() produtoDTO: AtualizacaoProdutoDTO): Promise<Estacionamento> {
+		return await this.estacionamentoService.atualizar(id, produtoDTO);
 	}
 
 	@Delete('/:id')

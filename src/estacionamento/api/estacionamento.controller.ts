@@ -1,10 +1,8 @@
 import { Controller, Inject, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
-import { IEstacionamentoService } from '../application/estacionamento.interface.service';
-import { Estacionamento } from '../domain/estacionamento.entity';
+import { IEstacionamentoService } from '../services/estacionamento.interface.service';
 import { EstacionamentoRetornoDTO } from './dto/estacionamento-retorno.dto';
 import { InsercaoEstacionamentoDTO } from './dto/insercao-estacionamento.dto';
-import { v4 as uuid } from 'uuid';
-import { AtualizacaoProdutoDTO } from './dto/atualizacao-estacionamento.dto';
+import { AtualizacaoEstacionamentoDTO } from './dto/atualizacao-estacionamento.dto';
 
 @Controller('/estacionamentos')
 export class EstacionamentoController {
@@ -16,24 +14,18 @@ export class EstacionamentoController {
 	}
 
 	@Get('/:id')
-	async obter(@Param('id') id: string): Promise<Estacionamento> {
+	async obter(@Param('id') id: string): Promise<EstacionamentoRetornoDTO> {
 		return await this.estacionamentoService.obter(id);
 	}
 
 	@Post()
-	async inserir(@Body() estacionamentoDTO: InsercaoEstacionamentoDTO): Promise<Estacionamento> {
-		const estacionamento = new Estacionamento();
-		estacionamento.id = uuid();
-		estacionamento.nome = estacionamentoDTO.nome;
-		estacionamento.usuarioId = estacionamentoDTO.usuarioId;
-		estacionamento.imagens = estacionamentoDTO.imagens;
-
-		return await this.estacionamentoService.inserir(estacionamento);
+	async inserir(@Body() estacionamentoDTO: InsercaoEstacionamentoDTO): Promise<EstacionamentoRetornoDTO> {
+		return await this.estacionamentoService.inserir(estacionamentoDTO);
 	}
 
 	@Put('/:id')
-	async atualizar(@Param('id') id: string, @Body() produtoDTO: AtualizacaoProdutoDTO): Promise<Estacionamento> {
-		return await this.estacionamentoService.atualizar(id, produtoDTO);
+	async atualizar(@Param('id') id: string, @Body() estacionamentoDTO: AtualizacaoEstacionamentoDTO): Promise<EstacionamentoRetornoDTO> {
+		return await this.estacionamentoService.atualizar(id, estacionamentoDTO);
 	}
 
 	@Delete('/:id')

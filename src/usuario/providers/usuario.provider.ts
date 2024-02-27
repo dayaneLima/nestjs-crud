@@ -1,6 +1,6 @@
 import { Provider } from '@nestjs/common';
-import { IUsuarioService } from '../application/usuario.interface.service';
-import { UsuarioService } from '../application/usuario.service';
+import { IUsuarioService } from '../services/usuario.interface.service';
+import { UsuarioService } from '../services/usuario.service';
 import { IUsuarioRepository } from '../domain/usuario.interface.repository';
 import { UsuarioRepository } from '../data/usuario.repository';
 

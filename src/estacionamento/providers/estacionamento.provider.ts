@@ -1,6 +1,6 @@
 import { Provider } from '@nestjs/common';
-import { IEstacionamentoService } from '../application/estacionamento.interface.service';
-import { EstacionamentoService } from '../application/estacionamento.service';
+import { IEstacionamentoService } from '../services/estacionamento.interface.service';
+import { EstacionamentoService } from '../services/estacionamento.service';
 import { IEstacionamentoRepository } from '../domain/estacionamento.interface.repository';
 import { EstacionamentoRepository } from '../data/estacionamento.repository';
 

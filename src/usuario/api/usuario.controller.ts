@@ -1,10 +1,8 @@
 import { Body, Controller, Delete, Get, Inject, Param, Post, Put } from '@nestjs/common';
-import { IUsuarioService } from '../application/usuario.interface.service';
+import { IUsuarioService } from '../services/usuario.interface.service';
 import { UsuarioInsercaoDTO } from './dto/usuario-insercao.dto';
-import { v4 as uuid } from 'uuid';
 import { UsuarioRetornoDTO } from './dto/usuario-retorno.dto';
 import { UsuarioAtualizacaoDTO } from './dto/usuario-atualizacao.dto';
-import { Usuario } from '../domain/usuario.entity';
 
 @Controller('/usuarios')
 export class UsuarioController {
@@ -22,13 +20,7 @@ export class UsuarioController {
 
 	@Post()
 	async inserir(@Body() usuarioDTO: UsuarioInsercaoDTO): Promise<UsuarioRetornoDTO> {
-		const usuario = new Usuario();
-		usuario.id = uuid();
-		usuario.nome = usuarioDTO.nome;
-		usuario.email = usuarioDTO.email;
-		usuario.senha = usuarioDTO.senha;
-
-		return await this.usuarioService.inserir(usuario);
+		return await this.usuarioService.inserir(usuarioDTO);
 	}
 
 	@Put('/:id')

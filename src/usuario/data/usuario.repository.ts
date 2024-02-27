@@ -32,8 +32,8 @@ export class UsuarioRepository implements IUsuarioRepository {
 		);
 	}
 
-	public async atualizar(id: string, usuario: Partial<Usuario>): Promise<boolean> {
-		return (await this.usuarioTypeOrmRepository.update(id, usuario)).affected > 0;
+	public async atualizar(usuario: Usuario): Promise<Usuario> {
+		return await this.usuarioTypeOrmRepository.save(usuario);
 	}
 
 	public async obter(id: string): Promise<Usuario> {

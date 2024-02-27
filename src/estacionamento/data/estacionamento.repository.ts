@@ -17,8 +17,8 @@ export class EstacionamentoRepository implements IEstacionamentoRepository {
 		return await this.estacionamentoTypeOrmRepository.find();
 	}
 
-	public async atualizar(id: string, estacionamento: Partial<Estacionamento>): Promise<boolean> {
-		return (await this.estacionamentoTypeOrmRepository.update(id, estacionamento)).affected > 0;
+	public async atualizar(estacionamento: Estacionamento): Promise<Estacionamento> {
+		return await this.estacionamentoTypeOrmRepository.save(estacionamento);
 	}
 
 	public async obter(id: string): Promise<Estacionamento> {

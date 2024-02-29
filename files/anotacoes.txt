@@ -39,7 +39,25 @@ npm install dotenv
 
 ##########   COMANDOS  ##########
 # MIGRATIONS
-typeorm-ts-node-esm -d src/db/data-source-cli.ts migration:show
+
+## Comando base
+typeorm-ts-node-esm -d src/db/data-source-cli.ts <comando>
 OU
-typeorm-ts-node-esm --dataSource src/db/data-source-cli.ts migration:show
+typeorm-ts-node-esm --dataSource src/db/data-source-cli.ts <comando>
+OU
+Adicionar no package.jon o comando:
+    "typeorm": "typeorm-ts-node-esm --dataSource src/db/data-source-cli.ts"
+    e executar: npm run typeorm <comando>
+
+## Listagem
+npm run typeorm migration:show
+
+## Geração
+npm run typeorm migration:generate src/db/migrations/criar-tabelas
+
+## Execução
+npm run typeorm migration:run
+
+## Reverter
+npm run typeorm migration:revert
 ####################################

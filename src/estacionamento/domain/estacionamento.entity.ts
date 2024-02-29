@@ -4,9 +4,6 @@ import { EstacionamentoImagem } from './estacionamento-imagem.entity';
 
 @Entity({ name: 'estacionamentos' })
 export class Estacionamento extends EntityCore {
-	@Column({ name: 'usuario_id', length: 100, nullable: false })
-	usuarioId: string;
-
 	@Column({ name: 'nome', length: 150, nullable: false })
 	nome: string;
 

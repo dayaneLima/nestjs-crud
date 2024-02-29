@@ -13,7 +13,6 @@ export class ProdutoService implements IProdutoService {
 	public async inserir(produtoDTO: ProdutoInsercaoDTO): Promise<ProdutoRetornoDTO> {
 		const produto = new Produto();
 		produto.nome = produtoDTO.nome;
-		produto.usuarioId = produtoDTO.usuarioId;
 		produto.valor = produtoDTO.valor;
 		produto.quantidadeDisponivel = produtoDTO.quantidadeDisponivel;
 		produto.descricao = produtoDTO.descricao;

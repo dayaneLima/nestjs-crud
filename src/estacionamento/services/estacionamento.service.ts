@@ -13,7 +13,6 @@ export class EstacionamentoService implements IEstacionamentoService {
 	public async inserir(estacionamentoDTO: EstacionamentoInsercaoDTO): Promise<EstacionamentoRetornoDTO> {
 		const estacionamento = new Estacionamento();
 		estacionamento.nome = estacionamentoDTO.nome;
-		estacionamento.usuarioId = estacionamentoDTO.usuarioId;
 		estacionamento.imagens = estacionamentoDTO.imagens;
 
 		const estacionamentoInserido = await this.estacionamentoRepository.inserir(estacionamento);

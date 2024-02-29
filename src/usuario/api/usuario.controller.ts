@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Inject, Param, Post, Put } from '@nestjs/common';
 import { IUsuarioService } from '../services/usuario.interface.service';
-import { UsuarioInsercaoDTO } from './dto/usuario-insercao.dto';
-import { UsuarioRetornoDTO } from './dto/usuario-retorno.dto';
-import { UsuarioAtualizacaoDTO } from './dto/usuario-atualizacao.dto';
+import { UsuarioInsercaoDTO } from '../dto/usuario-insercao.dto';
+import { UsuarioRetornoDTO } from '../dto/usuario-retorno.dto';
+import { UsuarioAtualizacaoDTO } from '../dto/usuario-atualizacao.dto';
 
 @Controller('/usuarios')
 export class UsuarioController {

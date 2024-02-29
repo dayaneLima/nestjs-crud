@@ -2,9 +2,9 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Usuario } from '../domain/usuario.entity';
 import { IUsuarioRepository } from '../domain/usuario.interface.repository';
 import { IUsuarioService } from './usuario.interface.service';
-import { UsuarioRetornoDTO } from '../api/dto/usuario-retorno.dto';
-import { UsuarioInsercaoDTO } from '../api/dto/usuario-insercao.dto';
-import { UsuarioAtualizacaoDTO } from '../api/dto/usuario-atualizacao.dto';
+import { UsuarioRetornoDTO } from '../dto/usuario-retorno.dto';
+import { UsuarioInsercaoDTO } from '../dto/usuario-insercao.dto';
+import { UsuarioAtualizacaoDTO } from '../dto/usuario-atualizacao.dto';
 
 @Injectable()
 export class UsuarioService implements IUsuarioService {

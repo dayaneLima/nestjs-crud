@@ -1,8 +1,8 @@
 import { Controller, Inject, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { IEstacionamentoService } from '../services/estacionamento.interface.service';
-import { EstacionamentoRetornoDTO } from './dto/estacionamento-retorno.dto';
-import { InsercaoEstacionamentoDTO } from './dto/insercao-estacionamento.dto';
-import { AtualizacaoEstacionamentoDTO } from './dto/atualizacao-estacionamento.dto';
+import { EstacionamentoRetornoDTO } from '../dto/estacionamento-retorno.dto';
+import { EstacionamentoInsercaoDTO } from '../dto/estacionamento-insercao.dto';
+import { EstacionamentoAtualizacaoDTO } from '../dto/estacionamento-atualizacao.dto';
 
 @Controller('/estacionamentos')
 export class EstacionamentoController {
@@ -19,12 +19,12 @@ export class EstacionamentoController {
 	}
 
 	@Post()
-	async inserir(@Body() estacionamentoDTO: InsercaoEstacionamentoDTO): Promise<EstacionamentoRetornoDTO> {
+	async inserir(@Body() estacionamentoDTO: EstacionamentoInsercaoDTO): Promise<EstacionamentoRetornoDTO> {
 		return await this.estacionamentoService.inserir(estacionamentoDTO);
 	}
 
 	@Put('/:id')
-	async atualizar(@Param('id') id: string, @Body() estacionamentoDTO: AtualizacaoEstacionamentoDTO): Promise<EstacionamentoRetornoDTO> {
+	async atualizar(@Param('id') id: string, @Body() estacionamentoDTO: EstacionamentoAtualizacaoDTO): Promise<EstacionamentoRetornoDTO> {
 		return await this.estacionamentoService.atualizar(id, estacionamentoDTO);
 	}
 

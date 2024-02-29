@@ -1,11 +1,11 @@
-import { AtualizacaoEstacionamentoDTO } from '../api/dto/atualizacao-estacionamento.dto';
-import { EstacionamentoRetornoDTO } from '../api/dto/estacionamento-retorno.dto';
-import { InsercaoEstacionamentoDTO } from '../api/dto/insercao-estacionamento.dto';
+import { EstacionamentoAtualizacaoDTO } from '../dto/estacionamento-atualizacao.dto';
+import { EstacionamentoRetornoDTO } from '../dto/estacionamento-retorno.dto';
+import { EstacionamentoInsercaoDTO } from '../dto/estacionamento-insercao.dto';
 
 export interface IEstacionamentoService {
-	inserir(estacionamentoDTO: InsercaoEstacionamentoDTO): Promise<EstacionamentoRetornoDTO>;
+	inserir(estacionamentoDTO: EstacionamentoInsercaoDTO): Promise<EstacionamentoRetornoDTO>;
 	listar(): Promise<EstacionamentoRetornoDTO[]>;
-	atualizar(id: string, estacionamentoDTO: AtualizacaoEstacionamentoDTO): Promise<EstacionamentoRetornoDTO>;
+	atualizar(id: string, estacionamentoDTO: EstacionamentoAtualizacaoDTO): Promise<EstacionamentoRetornoDTO>;
 	obter(id: string): Promise<EstacionamentoRetornoDTO>;
 	excluir(id: string): Promise<void>;
 }

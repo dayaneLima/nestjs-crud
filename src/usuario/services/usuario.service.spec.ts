@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsuarioService } from './usuario.service';
 import { UsuarioRepositoryProvider, UsuarioServiceProvider } from '../providers/usuario.provider';
-import { EmailEhUnicoValidator } from '../api/validations/email-eh-unico.validator';
+import { EmailEhUnicoValidator } from '../validations/email-eh-unico.validator';
 
 describe('UsuarioService', () => {
 	let service: UsuarioService;

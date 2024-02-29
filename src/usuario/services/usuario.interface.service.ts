@@ -1,6 +1,6 @@
-import { UsuarioAtualizacaoDTO } from '../api/dto/usuario-atualizacao.dto';
-import { UsuarioInsercaoDTO } from '../api/dto/usuario-insercao.dto';
-import { UsuarioRetornoDTO } from '../api/dto/usuario-retorno.dto';
+import { UsuarioAtualizacaoDTO } from '../dto/usuario-atualizacao.dto';
+import { UsuarioInsercaoDTO } from '../dto/usuario-insercao.dto';
+import { UsuarioRetornoDTO } from '../dto/usuario-retorno.dto';
 
 export interface IUsuarioService {
 	inserir(usuarioDTO: UsuarioInsercaoDTO): Promise<UsuarioRetornoDTO>;

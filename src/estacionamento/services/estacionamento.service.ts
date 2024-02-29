@@ -2,15 +2,15 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { IEstacionamentoService } from './estacionamento.interface.service';
 import { Estacionamento } from '../domain/estacionamento.entity';
 import { IEstacionamentoRepository } from '../domain/estacionamento.interface.repository';
-import { EstacionamentoRetornoDTO } from '../api/dto/estacionamento-retorno.dto';
-import { InsercaoEstacionamentoDTO } from '../api/dto/insercao-estacionamento.dto';
-import { AtualizacaoEstacionamentoDTO } from '../api/dto/atualizacao-estacionamento.dto';
+import { EstacionamentoRetornoDTO } from '../dto/estacionamento-retorno.dto';
+import { EstacionamentoInsercaoDTO } from '../dto/estacionamento-insercao.dto';
+import { EstacionamentoAtualizacaoDTO } from '../dto/estacionamento-atualizacao.dto';
 
 @Injectable()
 export class EstacionamentoService implements IEstacionamentoService {
 	constructor(@Inject(IEstacionamentoRepository) private estacionamentoRepository: IEstacionamentoRepository) {}
 
-	public async inserir(estacionamentoDTO: InsercaoEstacionamentoDTO): Promise<EstacionamentoRetornoDTO> {
+	public async inserir(estacionamentoDTO: EstacionamentoInsercaoDTO): Promise<EstacionamentoRetornoDTO> {
 		const estacionamento = new Estacionamento();
 		estacionamento.nome = estacionamentoDTO.nome;
 		estacionamento.usuarioId = estacionamentoDTO.usuarioId;
@@ -25,7 +25,7 @@ export class EstacionamentoService implements IEstacionamentoService {
 		return estacionamentos.map((estacionamento) => this.converterEstacionamentoParaEstacionamentoRetornoDTO(estacionamento));
 	}
 
-	public async atualizar(id: string, estacionamentoDTO: AtualizacaoEstacionamentoDTO): Promise<EstacionamentoRetornoDTO> {
+	public async atualizar(id: string, estacionamentoDTO: EstacionamentoAtualizacaoDTO): Promise<EstacionamentoRetornoDTO> {
 		const estacionamento = await this.estacionamentoRepository.obter(id);
 
 		if (!estacionamento) {

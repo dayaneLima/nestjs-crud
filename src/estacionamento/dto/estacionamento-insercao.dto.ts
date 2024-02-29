@@ -2,7 +2,7 @@ import { Type } from 'class-transformer';
 import { IsArray, IsNotEmpty, IsString, IsUUID, ValidateNested } from 'class-validator';
 import { EstacionamentoImagemDTO } from './estacionamento-imagem.dto';
 
-export class InsercaoEstacionamentoDTO {
+export class EstacionamentoInsercaoDTO {
 	@IsUUID(undefined, { message: 'ID de usuário inválido' })
 	usuarioId: string;
 

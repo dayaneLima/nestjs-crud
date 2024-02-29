@@ -7,7 +7,6 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class EstacionamentoRepository implements IEstacionamentoRepository {
 	constructor(@InjectRepository(Estacionamento) private readonly estacionamentoTypeOrmRepository: Repository<Estacionamento>) {}
-	private estacionamentos: Estacionamento[] = [];
 
 	public async inserir(estacionamento: Estacionamento): Promise<Estacionamento> {
 		return await this.estacionamentoTypeOrmRepository.save(estacionamento);

@@ -23,9 +23,23 @@ npm install -D @types/uuid
 # TypeOrm (Mapeamento banco de dados)
 npm install @nestjs/typeorm typeorm
 
+# TypeOrm global
+npm i -g typeorm
+
 # Postgres
 npm install pg
 
 # Arquivo de configuração (.env)
 npm install @nestjs/config
+
+# dotent
+npm install dotenv
+
+####################################
+
+##########   COMANDOS  ##########
+# MIGRATIONS
+typeorm-ts-node-esm -d src/db/data-source-cli.ts migration:show
+OU
+typeorm-ts-node-esm --dataSource src/db/data-source-cli.ts migration:show
 ####################################

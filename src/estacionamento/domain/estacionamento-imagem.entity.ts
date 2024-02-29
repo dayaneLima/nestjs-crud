@@ -1,4 +1,4 @@
-import { EntityCore } from 'src/core/domain/entity.core';
+import { EntityCore } from '../../core/domain/entity.core';
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { Estacionamento } from './estacionamento.entity';
 

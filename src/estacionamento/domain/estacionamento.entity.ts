@@ -1,8 +1,6 @@
-import { EntityCore } from 'src/core/domain/entity.core';
+import { EntityCore } from '../../core/domain/entity.core';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, UpdateDateColumn } from 'typeorm';
 import { EstacionamentoImagem } from './estacionamento-imagem.entity';
-// import { FormaPagamento } from './forma-pagamento.entity';
-// import { EstacionamentoImagem } from './estacionamento-imagem.entity';
 
 @Entity({ name: 'estacionamentos' })
 export class Estacionamento extends EntityCore {

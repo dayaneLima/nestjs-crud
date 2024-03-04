@@ -35,6 +35,8 @@ npm install @nestjs/config
 # dotent
 npm install dotenv
 
+#cli global do nestjs
+npm install -g @nestjs/cli 
 ####################################
 
 ##########   COMANDOS  ##########
@@ -60,4 +62,8 @@ npm run typeorm migration:run
 
 ## Reverter
 npm run typeorm migration:revert
+
+# NESTJS CLI
+## Gerar crud
+nest g resource pedido --no-spec
 ####################################

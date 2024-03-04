@@ -3,9 +3,9 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostgresConfigService } from './config/postgres.config.service';
 import { ConfigModule } from '@nestjs/config';
-import { EstacionamentoModule } from './estacionamento/estacionamento.module';
 import { CoreModule } from './core/core.module';
 import { ProdutoModule } from './produto/produto.module';
+import { PedidoModule } from './pedido/pedido.module';
 
 @Module({
 	imports: [
@@ -18,8 +18,8 @@ import { ProdutoModule } from './produto/produto.module';
 		}),
 		CoreModule,
 		UsuarioModule,
-		EstacionamentoModule,
-		ProdutoModule
+		ProdutoModule,
+		PedidoModule
 	]
 })
 export class AppModule {}

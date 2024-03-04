@@ -1,30 +1,30 @@
 import { Body, Controller, Delete, Get, Inject, Param, Post, Put } from '@nestjs/common';
 import { IUsuarioService } from '../services/usuario.interface.service';
-import { UsuarioInsercaoDTO } from '../dto/usuario-insercao.dto';
-import { UsuarioRetornoDTO } from '../dto/usuario-retorno.dto';
-import { UsuarioAtualizacaoDTO } from '../dto/usuario-atualizacao.dto';
+import { CriarUsuarioDTO } from '../dto/criar-usuario.dto';
+import { ListarUsuarioDTO } from '../dto/listar-usuario.dto';
+import { AtualizarUsuarioDTO } from '../dto/atualizar-usuario.dto';
 
 @Controller('/usuarios')
 export class UsuarioController {
 	constructor(@Inject(IUsuarioService) private readonly usuarioService: IUsuarioService) {}
 
 	@Get()
-	async listar(): Promise<UsuarioRetornoDTO[]> {
+	async listar(): Promise<ListarUsuarioDTO[]> {
 		return await this.usuarioService.listar();
 	}
 
 	@Get('/:id')
-	async obter(@Param('id') id: string): Promise<UsuarioRetornoDTO> {
+	async obter(@Param('id') id: string): Promise<ListarUsuarioDTO> {
 		return await this.usuarioService.obter(id);
 	}
 
 	@Post()
-	async inserir(@Body() usuarioDTO: UsuarioInsercaoDTO): Promise<UsuarioRetornoDTO> {
+	async inserir(@Body() usuarioDTO: CriarUsuarioDTO): Promise<ListarUsuarioDTO> {
 		return await this.usuarioService.inserir(usuarioDTO);
 	}
 
 	@Put('/:id')
-	async atualizar(@Param('id') id: string, @Body() usuarioDTO: UsuarioAtualizacaoDTO): Promise<UsuarioRetornoDTO> {
+	async atualizar(@Param('id') id: string, @Body() usuarioDTO: AtualizarUsuarioDTO): Promise<ListarUsuarioDTO> {
 		return await this.usuarioService.atualizar(id, usuarioDTO);
 	}
 

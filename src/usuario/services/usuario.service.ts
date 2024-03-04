@@ -2,34 +2,34 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Usuario } from '../domain/usuario.entity';
 import { IUsuarioRepository } from '../domain/usuario.interface.repository';
 import { IUsuarioService } from './usuario.interface.service';
-import { UsuarioRetornoDTO } from '../dto/usuario-retorno.dto';
-import { UsuarioInsercaoDTO } from '../dto/usuario-insercao.dto';
-import { UsuarioAtualizacaoDTO } from '../dto/usuario-atualizacao.dto';
+import { ListarUsuarioDTO } from '../dto/listar-usuario.dto';
+import { CriarUsuarioDTO } from '../dto/criar-usuario.dto';
+import { AtualizarUsuarioDTO } from '../dto/atualizar-usuario.dto';
 
 @Injectable()
 export class UsuarioService implements IUsuarioService {
 	constructor(@Inject(IUsuarioRepository) private usuarioRepository: IUsuarioRepository) {}
 
-	public async inserir(usuarioDTO: UsuarioInsercaoDTO): Promise<UsuarioRetornoDTO> {
+	public async inserir(usuarioDTO: CriarUsuarioDTO): Promise<ListarUsuarioDTO> {
 		const usuario = new Usuario();
 		usuario.nome = usuarioDTO.nome;
 		usuario.email = usuarioDTO.email;
 		usuario.senha = usuarioDTO.senha;
 
 		const usuarioInserido = await this.usuarioRepository.inserir(usuario);
-		return this.converterUsuarioParaUsuarioRetornoDTO(usuarioInserido);
+		return this.converterUsuarioParaListarUsuarioDTO(usuarioInserido);
 	}
 
-	public async listar(): Promise<UsuarioRetornoDTO[]> {
+	public async listar(): Promise<ListarUsuarioDTO[]> {
 		const usuarios = await this.usuarioRepository.listar();
-		return usuarios.map((usuario) => this.converterUsuarioParaUsuarioRetornoDTO(usuario));
+		return usuarios.map((usuario) => this.converterUsuarioParaListarUsuarioDTO(usuario));
 	}
 
 	public async verificarUsuarioExiste(email: string, id?: string): Promise<boolean> {
 		return await this.usuarioRepository.verificarExiste(email, id);
 	}
 
-	public async atualizar(id: string, usuarioDTO: UsuarioAtualizacaoDTO): Promise<UsuarioRetornoDTO> {
+	public async atualizar(id: string, usuarioDTO: AtualizarUsuarioDTO): Promise<ListarUsuarioDTO> {
 		const usuario = await this.usuarioRepository.obter(id);
 
 		if (!usuario) {
@@ -38,17 +38,17 @@ export class UsuarioService implements IUsuarioService {
 
 		Object.assign(usuario, usuarioDTO);
 		await this.usuarioRepository.atualizar(usuario);
-		return this.converterUsuarioParaUsuarioRetornoDTO(usuario);
+		return this.converterUsuarioParaListarUsuarioDTO(usuario);
 	}
 
-	public async obter(id: string): Promise<UsuarioRetornoDTO> {
+	public async obter(id: string): Promise<ListarUsuarioDTO> {
 		const usuario = await this.usuarioRepository.obter(id);
 
 		if (!usuario) {
 			throw new NotFoundException('Usuário não encontrado');
 		}
 
-		return this.converterUsuarioParaUsuarioRetornoDTO(usuario);
+		return this.converterUsuarioParaListarUsuarioDTO(usuario);
 	}
 
 	public async excluir(id: string): Promise<void> {
@@ -57,7 +57,7 @@ export class UsuarioService implements IUsuarioService {
 		}
 	}
 
-	private converterUsuarioParaUsuarioRetornoDTO(usuario: Usuario): UsuarioRetornoDTO {
-		return new UsuarioRetornoDTO(usuario.id, usuario.nome, usuario.email);
+	private converterUsuarioParaListarUsuarioDTO(usuario: Usuario): ListarUsuarioDTO {
+		return new ListarUsuarioDTO(usuario.id, usuario.nome, usuario.email);
 	}
 }

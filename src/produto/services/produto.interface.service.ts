@@ -1,12 +1,12 @@
-import { ProdutoAtualizacaoDTO } from '../dto/produto-atualizacao.dto';
-import { ProdutoInsercaoDTO } from '../dto/produto-insercao.dto';
-import { ProdutoRetornoDTO } from '../dto/produto-retorno.dto';
+import { AtualizarProdutoDTO } from '../dto/atualizar-produto.dto';
+import { CriarProdutoDTO } from '../dto/criar-produto.dto';
+import { ListarProdutoDTO } from '../dto/listar-produto.dto';
 
 export interface IProdutoService {
-	inserir(produtoDTO: ProdutoInsercaoDTO): Promise<ProdutoRetornoDTO>;
-	listar(): Promise<ProdutoRetornoDTO[]>;
-	atualizar(id: string, produtoDTO: ProdutoAtualizacaoDTO): Promise<ProdutoRetornoDTO>;
-	obter(id: string): Promise<ProdutoRetornoDTO>;
+	inserir(produtoDTO: CriarProdutoDTO): Promise<ListarProdutoDTO>;
+	listar(): Promise<ListarProdutoDTO[]>;
+	atualizar(id: string, produtoDTO: AtualizarProdutoDTO): Promise<ListarProdutoDTO>;
+	obter(id: string): Promise<ListarProdutoDTO>;
 	excluir(id: string): Promise<void>;
 }
 

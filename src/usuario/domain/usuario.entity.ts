@@ -1,5 +1,6 @@
+import { Pedido } from './../../pedido/domain/pedido.entity';
 import { EntityCore } from '../../core/domain/entity.core';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, UpdateDateColumn } from 'typeorm';
 
 @Entity({ name: 'usuarios' })
 export class Usuario extends EntityCore {
@@ -20,4 +21,7 @@ export class Usuario extends EntityCore {
 
 	@DeleteDateColumn({ name: 'deleted_at' })
 	deletedAt: string;
+
+	@OneToMany(() => Pedido, (pedido) => pedido.usuario)
+	pedidos: Pedido[];
 }

@@ -1,13 +1,13 @@
-import { UsuarioAtualizacaoDTO } from '../dto/usuario-atualizacao.dto';
-import { UsuarioInsercaoDTO } from '../dto/usuario-insercao.dto';
-import { UsuarioRetornoDTO } from '../dto/usuario-retorno.dto';
+import { AtualizarUsuarioDTO } from '../dto/atualizar-usuario.dto';
+import { CriarUsuarioDTO } from '../dto/criar-usuario.dto';
+import { ListarUsuarioDTO } from '../dto/listar-usuario.dto';
 
 export interface IUsuarioService {
-	inserir(usuarioDTO: UsuarioInsercaoDTO): Promise<UsuarioRetornoDTO>;
-	listar(): Promise<UsuarioRetornoDTO[]>;
+	inserir(usuarioDTO: CriarUsuarioDTO): Promise<ListarUsuarioDTO>;
+	listar(): Promise<ListarUsuarioDTO[]>;
 	verificarUsuarioExiste(email: string, id?: string): Promise<boolean>;
-	atualizar(id: string, usuarioDTO: UsuarioAtualizacaoDTO): Promise<UsuarioRetornoDTO>;
-	obter(id: string): Promise<UsuarioRetornoDTO>;
+	atualizar(id: string, usuarioDTO: AtualizarUsuarioDTO): Promise<ListarUsuarioDTO>;
+	obter(id: string): Promise<ListarUsuarioDTO>;
 	excluir(id: string): Promise<void>;
 }
 

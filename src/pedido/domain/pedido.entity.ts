@@ -5,9 +5,6 @@ import { Usuario } from '../..//usuario/domain/usuario.entity';
 
 @Entity({ name: 'pedidos' })
 export class Pedido extends EntityCore {
-	@Column({ name: 'nome', length: 100, nullable: false })
-	nome: string;
-
 	@Column({ name: 'valor_total', type: 'decimal', precision: 22, scale: 2, nullable: false })
 	valorTotal: number;
 

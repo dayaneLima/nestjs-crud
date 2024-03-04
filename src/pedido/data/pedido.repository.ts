@@ -6,5 +6,20 @@ import { IPedidoRepository } from '../domain/pedido.interface.repository';
 
 @Injectable()
 export class PedidoRepository implements IPedidoRepository {
-	constructor(@InjectRepository(Pedido) private readonly produtoTypeOrmRepository: Repository<Pedido>) {}
+	constructor(@InjectRepository(Pedido) private readonly pedidoTypeOrmRepository: Repository<Pedido>) {}
+
+	public async inserir(pedido: Pedido): Promise<Pedido> {
+		return await this.pedidoTypeOrmRepository.save(pedido);
+	}
+
+	public async obterPedidosUsuario(usuarioId: string): Promise<Pedido[]> {
+		return this.pedidoTypeOrmRepository.find({
+			where: {
+				usuario: { id: usuarioId }
+			},
+			relations: {
+				usuario: true
+			}
+		});
+	}
 }

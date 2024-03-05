@@ -4,9 +4,10 @@ import { PedidoServiceProvider, PedidoRepositoryProvider } from './providers/ped
 import { Pedido } from './domain/pedido.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from 'src/usuario/usuario.module';
+import { ProdutoModule } from 'src/produto/produto.module';
 
 @Module({
-	imports: [TypeOrmModule.forFeature([Pedido]), UsuarioModule],
+	imports: [TypeOrmModule.forFeature([Pedido]), UsuarioModule, ProdutoModule],
 	controllers: [PedidoController],
 	providers: [PedidoServiceProvider, PedidoRepositoryProvider]
 })

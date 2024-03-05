@@ -24,13 +24,14 @@ export class ProdutoRepository implements IProdutoRepository {
 		return await this.produtoTypeOrmRepository.save(produto);
 	}
 
-	public async obter(id: string): Promise<Produto> {
+	public async obter(id: string): Promise<Produto | null> {
 		return await this.produtoTypeOrmRepository.findOne({
 			where: { id: id }
 		});
 	}
 
 	public async excluir(id: string): Promise<boolean> {
-		return (await this.produtoTypeOrmRepository.delete(id)).affected > 0;
+		const itemDeletado = await this.produtoTypeOrmRepository.delete(id);
+		return itemDeletado.affected != null && itemDeletado.affected > 0;
 	}
 }

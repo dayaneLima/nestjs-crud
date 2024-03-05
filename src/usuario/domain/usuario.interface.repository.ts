@@ -5,7 +5,7 @@ export interface IUsuarioRepository {
 	listar(): Promise<Usuario[]>;
 	verificarExiste(email: string, id?: string): Promise<boolean>;
 	atualizar(usuario: Usuario): Promise<Usuario>;
-	obter(id: string): Promise<Usuario>;
+	obter(id: string): Promise<Usuario | null>;
 	excluir(id: string): Promise<boolean>;
 }
 

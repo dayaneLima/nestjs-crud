@@ -5,7 +5,7 @@ export interface IProdutoRepository {
 	listar(): Promise<Produto[]>;
 	obterPorIds(ids: string[]): Promise<Produto[]>;
 	atualizar(produto: Produto): Promise<Produto>;
-	obter(id: string): Promise<Produto>;
+	obter(id: string): Promise<Produto | null>;
 	excluir(id: string): Promise<boolean>;
 }
 

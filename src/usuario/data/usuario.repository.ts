@@ -36,13 +36,14 @@ export class UsuarioRepository implements IUsuarioRepository {
 		return await this.usuarioTypeOrmRepository.save(usuario);
 	}
 
-	public async obter(id: string): Promise<Usuario> {
+	public async obter(id: string): Promise<Usuario | null> {
 		return await this.usuarioTypeOrmRepository.findOne({
 			where: { id: id }
 		});
 	}
 
 	public async excluir(id: string): Promise<boolean> {
-		return (await this.usuarioTypeOrmRepository.delete(id)).affected > 0;
+		const itemDeletado = await this.usuarioTypeOrmRepository.delete(id);
+		return itemDeletado.affected != null && itemDeletado.affected > 0;
 	}
 }

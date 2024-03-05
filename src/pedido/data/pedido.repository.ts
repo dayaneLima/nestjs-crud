@@ -22,4 +22,14 @@ export class PedidoRepository implements IPedidoRepository {
 			}
 		});
 	}
+
+	public async atualizar(pedido: Pedido): Promise<Pedido> {
+		return await this.pedidoTypeOrmRepository.save(pedido);
+	}
+
+	public async obter(id: string): Promise<Pedido | null> {
+		return await this.pedidoTypeOrmRepository.findOne({
+			where: { id: id }
+		});
+	}
 }

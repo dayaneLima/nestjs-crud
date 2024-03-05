@@ -7,6 +7,7 @@ import { ProdutoRepositoryProvider, ProdutoServiceProvider } from './providers/p
 @Module({
 	imports: [TypeOrmModule.forFeature([Produto])],
 	controllers: [ProdutoController],
-	providers: [ProdutoServiceProvider, ProdutoRepositoryProvider]
+	providers: [ProdutoServiceProvider, ProdutoRepositoryProvider],
+	exports: [ProdutoRepositoryProvider]
 })
 export class ProdutoModule {}

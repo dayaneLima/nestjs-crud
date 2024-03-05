@@ -1,7 +1,8 @@
 import { EntityCore } from '../../core/domain/entity.core';
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, UpdateDateColumn } from 'typeorm';
 import { StatusPedido } from '../valueObjects/status-pedido.enum';
 import { Usuario } from '../..//usuario/domain/usuario.entity';
+import { ItemPedido } from './item-pedido.entity';
 
 @Entity({ name: 'pedidos' })
 export class Pedido extends EntityCore {
@@ -22,4 +23,9 @@ export class Pedido extends EntityCore {
 
 	@ManyToOne(() => Usuario, (usuario) => usuario.pedidos)
 	usuario: Usuario;
+
+	@OneToMany(() => ItemPedido, (itemPedido) => itemPedido.pedido, {
+		cascade: true
+	})
+	itensPedido: ItemPedido[];
 }

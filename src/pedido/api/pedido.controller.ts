@@ -13,7 +13,7 @@ export class PedidoController {
 	}
 
 	@Post()
-	async inserir(@Body() pedidoDTO: CriarPedidoDTO): Promise<ListarPedidoDTO> {
-		return await this.pedidoService.inserir(pedidoDTO);
+	async inserir(@Query('usuarioId') usuarioId: string, Body() pedidoDTO: CriarPedidoDTO): Promise<ListarPedidoDTO> {
+		return await this.pedidoService.inserir(usuarioId, pedidoDTO);
 	}
 }

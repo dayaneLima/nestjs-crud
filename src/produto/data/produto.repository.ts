@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Produto } from '../domain/produto.entity';
 import { IProdutoRepository } from '../domain/produto.interface.repository';
 
@@ -14,6 +14,10 @@ export class ProdutoRepository implements IProdutoRepository {
 
 	public async listar(): Promise<Produto[]> {
 		return await this.produtoTypeOrmRepository.find();
+	}
+
+	public async obterPorIds(ids: string[]): Promise<Produto[]> {
+		return await this.produtoTypeOrmRepository.findBy({ id: In(ids) });
 	}
 
 	public async atualizar(produto: Produto): Promise<Produto> {

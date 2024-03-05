@@ -1,7 +1,11 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import { ArrayMinSize, IsArray, ValidateNested } from 'class-validator';
+import { ItemPedidoDTO } from './item-pedido.dto';
 
 export class CriarPedidoDTO {
-	@IsString()
-	@IsNotEmpty({ message: 'Usuário não informado' })
-	usuarioId: string;
+	@ValidateNested()
+	@IsArray()
+	@ArrayMinSize(1)
+	@Type(() => ItemPedidoDTO)
+	itensPedido: ItemPedidoDTO[];
 }

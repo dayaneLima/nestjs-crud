@@ -33,6 +33,7 @@ export class PedidoService implements IPedidoService {
 			itemPedido.produto = produtoRelacionado;
 			itemPedido.precoVenda = produtoRelacionado.valor;
 			itemPedido.quantidade = itemPedidoDTO.quantidade;
+			itemPedido.produto.quantidadeDisponivel -= itemPedido.quantidade;
 			return itemPedido;
 		});
 

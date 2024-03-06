@@ -84,7 +84,7 @@ export class PedidoService implements IPedidoService {
 			throw new NotFoundException('Pedido não encontrado');
 		}
 
-		Object.assign(pedido, pedidoDTO);
+		Object.assign(pedido, pedidoDTO as Pedido);
 		await this.pedidoRepository.atualizar(pedido);
 		return this.converterPedidoParaListarPedidoDTO(pedido);
 	}

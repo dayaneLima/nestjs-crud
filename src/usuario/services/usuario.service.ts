@@ -12,9 +12,7 @@ export class UsuarioService implements IUsuarioService {
 
 	public async inserir(usuarioDTO: CriarUsuarioDTO): Promise<ListarUsuarioDTO> {
 		const usuario = new Usuario();
-		usuario.nome = usuarioDTO.nome;
-		usuario.email = usuarioDTO.email;
-		usuario.senha = usuarioDTO.senha;
+		Object.assign(usuario, usuarioDTO as Usuario);
 
 		const usuarioInserido = await this.usuarioRepository.inserir(usuario);
 		return this.converterUsuarioParaListarUsuarioDTO(usuarioInserido);
@@ -36,7 +34,7 @@ export class UsuarioService implements IUsuarioService {
 			throw new NotFoundException('Usuário não encontrado');
 		}
 
-		Object.assign(usuario, usuarioDTO);
+		Object.assign(usuario, usuarioDTO as Usuario);
 		await this.usuarioRepository.atualizar(usuario);
 		return this.converterUsuarioParaListarUsuarioDTO(usuario);
 	}

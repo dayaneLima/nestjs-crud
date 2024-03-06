@@ -12,13 +12,7 @@ export class ProdutoService implements IProdutoService {
 
 	public async inserir(produtoDTO: CriarProdutoDTO): Promise<ListarProdutoDTO> {
 		const produto = new Produto();
-		produto.nome = produtoDTO.nome;
-		produto.valor = produtoDTO.valor;
-		produto.quantidadeDisponivel = produtoDTO.quantidadeDisponivel;
-		produto.descricao = produtoDTO.descricao;
-		produto.categoria = produtoDTO.categoria;
-		produto.caracteristicas = produtoDTO.caracteristicas;
-		produto.imagens = produtoDTO.imagens;
+		Object.assign(produto, produtoDTO as Produto);
 
 		const produtoInserido = await this.produtoRepository.inserir(produto);
 		return this.converterProdutoParaListarProdutoDTO(produtoInserido);
@@ -36,7 +30,7 @@ export class ProdutoService implements IProdutoService {
 			throw new NotFoundException('Produto não encontrado');
 		}
 
-		Object.assign(produto, produtoDTO);
+		Object.assign(produto, produtoDTO as Produto);
 		await this.produtoRepository.atualizar(produto);
 		return this.converterProdutoParaListarProdutoDTO(produto);
 	}

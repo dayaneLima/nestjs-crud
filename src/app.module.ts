@@ -6,6 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { CoreModule } from './core/core.module';
 import { ProdutoModule } from './produto/produto.module';
 import { PedidoModule } from './pedido/pedido.module';
+import { APP_FILTER } from '@nestjs/core';
+import { AllExceptionFilter } from './core/filters/all-exception.filter';
 
 @Module({
 	imports: [
@@ -20,6 +22,12 @@ import { PedidoModule } from './pedido/pedido.module';
 		UsuarioModule,
 		ProdutoModule,
 		PedidoModule
+	],
+	providers: [
+		{
+			provide: APP_FILTER,
+			useClass: AllExceptionFilter
+		}
 	]
 })
 export class AppModule {}

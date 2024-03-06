@@ -37,9 +37,7 @@ export class UsuarioRepository implements IUsuarioRepository {
 	}
 
 	public async obter(id: string): Promise<Usuario | null> {
-		return await this.usuarioTypeOrmRepository.findOne({
-			where: { id: id }
-		});
+		return await this.usuarioTypeOrmRepository.findOneBy({ id });
 	}
 
 	public async excluir(id: string): Promise<boolean> {

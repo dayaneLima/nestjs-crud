@@ -72,6 +72,7 @@ export class PedidoService implements IPedidoService {
 	}
 
 	public async obterPedidosUsuario(usuarioId: string): Promise<ListarPedidoDTO[]> {
+		await this.usuarioRepository.obter(usuarioId);
 		const pedidos = await this.pedidoRepository.obterPedidosUsuario(usuarioId);
 		return pedidos.map((pedido) => this.converterPedidoParaListarPedidoDTO(pedido));
 	}

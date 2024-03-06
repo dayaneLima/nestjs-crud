@@ -1,13 +1,4 @@
-import { IsEmail, IsNotEmpty, IsOptional } from 'class-validator';
-import { EmailEhUnico } from '../validations/email-eh-unico.validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { CriarUsuarioDTO } from './criar-usuario.dto';
 
-export class AtualizarUsuarioDTO {
-	@IsNotEmpty({ message: 'O nome não pode ser vazio' })
-	@IsOptional()
-	nome: string;
-
-	@IsEmail({}, { message: 'E-mail informado é inválido' })
-	@EmailEhUnico({ message: 'Já existe um usuário com este e-mail' })
-	@IsOptional()
-	email: string;
-}
+export class AtualizarUsuarioDTO extends PartialType(CriarUsuarioDTO) {}

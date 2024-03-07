@@ -46,6 +46,10 @@ npm install @nestjs/cache-manager cache-manager
 
 # Cache com redis
 npm install cache-manager-redis-yet
+
+# Criptografia
+npm install bcrypt
+npm install @types/bcrypt
 ####################################
 
 ##########   COMANDOS  ##########
@@ -75,6 +79,12 @@ npm run typeorm migration:revert
 # NESTJS CLI
 ## Gerar crud
 nest g resource pedido --no-spec
+
+# Gerar SAL do bcrypt
+No terminal digite:
+node [enter]
+const bcrypt = require('bcrypt'); [enter]
+bcrypt.genSaltSync(10); [enter]
 ####################################
 
 ##########   FERRAMENTAS  ##########

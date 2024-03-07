@@ -3,6 +3,7 @@ import { IUsuarioService } from '../services/usuario.interface.service';
 import { CriarUsuarioDTO } from '../dto/criar-usuario.dto';
 import { ListarUsuarioDTO } from '../dto/listar-usuario.dto';
 import { AtualizarUsuarioDTO } from '../dto/atualizar-usuario.dto';
+import { CriptografarSenhaPipe } from 'src/pipes/criptografar-senha.pipe';
 
 @Controller('/usuarios')
 export class UsuarioController {
@@ -19,8 +20,8 @@ export class UsuarioController {
 	}
 
 	@Post()
-	async inserir(@Body() usuarioDTO: CriarUsuarioDTO): Promise<ListarUsuarioDTO> {
-		return await this.usuarioService.inserir(usuarioDTO);
+	async inserir(@Body() usuarioDTO: CriarUsuarioDTO, @Body('senha', CriptografarSenhaPipe) senhaCriptografada: string): Promise<ListarUsuarioDTO> {
+		return await this.usuarioService.inserir({ ...usuarioDTO, senha: senhaCriptografada });
 	}
 
 	@Put('/:id')

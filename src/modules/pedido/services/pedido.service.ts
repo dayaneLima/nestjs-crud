@@ -5,11 +5,11 @@ import { CriarPedidoDTO } from '../dto/criar-pedido.dto';
 import { ListarPedidoDTO } from '../dto/listar-pedido.dto';
 import { Pedido } from '../domain/pedido.entity';
 import { StatusPedido } from '../valueObjects/status-pedido.enum';
-import { IUsuarioRepository } from 'src/modulos/usuario/domain/usuario.interface.repository';
+import { IUsuarioRepository } from 'src/modules/usuario/domain/usuario.interface.repository';
 import { ItemPedido } from '../domain/item-pedido.entity';
 import { IProdutoRepository } from '../../produto/domain/produto.interface.repository';
 import { AtualizarPedidoDTO } from '../dto/atualizar-pedido.dto';
-import { Produto } from 'src/modulos/produto/domain/produto.entity';
+import { Produto } from 'src/modules/produto/domain/produto.entity';
 
 @Injectable()
 export class PedidoService implements IPedidoService {

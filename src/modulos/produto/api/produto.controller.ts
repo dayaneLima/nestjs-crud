@@ -1,4 +1,5 @@
-import { Controller, Inject, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Inject, Get, Post, Put, Delete, Param, Body, UseInterceptors } from '@nestjs/common';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 import { IProdutoService } from '../services/produto.interface.service';
 import { ListarProdutoDTO } from '../dto/listar-produto.dto';
 import { CriarProdutoDTO } from '../dto/criar-produto.dto';
@@ -14,6 +15,7 @@ export class ProdutoController {
 	}
 
 	@Get('/:id')
+	@UseInterceptors(CacheInterceptor)
 	async obter(@Param('id') id: string): Promise<ListarProdutoDTO> {
 		return await this.produtoService.obter(id);
 	}

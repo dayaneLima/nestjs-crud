@@ -35,8 +35,11 @@ npm install @nestjs/config
 # dotent
 npm install dotenv
 
-#cli global do nestjs
+# cli global do nestjs
 npm install -g @nestjs/cli 
+
+# Cache
+npm install @nestjs/cache-manager cache-manager
 ####################################
 
 ##########   COMANDOS  ##########
@@ -66,4 +69,35 @@ npm run typeorm migration:revert
 # NESTJS CLI
 ## Gerar crud
 nest g resource pedido --no-spec
+####################################
+
+##########   FERRAMENTAS  ##########
+# Extensão de dados randomicos para o vscode
+vscode-random
+
+# Redis GUI - Visualização de dados do Redis
+https://redis.com/redis-enterprise/redis-insight/
+
+version: '3'
+services:
+  redis:
+    container_name: redis
+    image: redislabs/redismod
+    ports:
+      - 6379:6379
+    #environment:
+    #- REDIS_PASSWORD: secret   
+    #- REDIS_REPLICATION_mode=master
+    #command
+      #- "--requirepass=mypassword"
+  redisinsight:
+    container_name: redisinsight
+    image: redislabs/redisinsight:latest
+    ports:
+      - '8001:8001'
+    volumes:
+      - ./Users/ajeetraina/data/redisinsight:/db 
+
+
+chown -R 1001 redisinsight 
 ####################################

@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
-import { UsuarioModule } from './usuario/usuario.module';
+import { UsuarioModule } from './modulos/usuario/usuario.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostgresConfigService } from './config/postgres.config.service';
 import { ConfigModule } from '@nestjs/config';
-import { CoreModule } from './core/core.module';
-import { ProdutoModule } from './produto/produto.module';
-import { PedidoModule } from './pedido/pedido.module';
+import { CoreModule } from './modulos/core/core.module';
+import { ProdutoModule } from './modulos/produto/produto.module';
+import { PedidoModule } from './modulos/pedido/pedido.module';
 import { APP_FILTER } from '@nestjs/core';
-import { AllExceptionFilter } from './core/filters/all-exception.filter';
+import { AllExceptionFilter } from './modulos/core/filters/all-exception.filter';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
 	imports: [
@@ -18,6 +19,7 @@ import { AllExceptionFilter } from './core/filters/all-exception.filter';
 			useClass: PostgresConfigService,
 			inject: [PostgresConfigService]
 		}),
+		CacheModule.register({ isGlobal: true, ttl: 10000 }),
 		CoreModule,
 		UsuarioModule,
 		ProdutoModule,

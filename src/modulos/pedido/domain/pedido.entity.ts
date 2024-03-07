@@ -1,7 +1,7 @@
 import { EntityCore } from '../../core/domain/entity.core';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, UpdateDateColumn } from 'typeorm';
 import { StatusPedido } from '../valueObjects/status-pedido.enum';
-import { Usuario } from '../..//usuario/domain/usuario.entity';
+import { Usuario } from '../../usuario/domain/usuario.entity';
 import { ItemPedido } from './item-pedido.entity';
 
 @Entity({ name: 'pedidos' })

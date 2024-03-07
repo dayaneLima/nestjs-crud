@@ -1,4 +1,4 @@
-import { Pedido } from './../../pedido/domain/pedido.entity';
+import { Pedido } from '../../pedido/domain/pedido.entity';
 import { EntityCore } from '../../core/domain/entity.core';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, UpdateDateColumn } from 'typeorm';
 

@@ -1,23 +1,35 @@
 import { Controller, Inject, Get, Post, Put, Delete, Param, Body, UseInterceptors } from '@nestjs/common';
-import { CacheInterceptor } from '@nestjs/cache-manager';
+import { CACHE_MANAGER, CacheInterceptor } from '@nestjs/cache-manager';
 import { IProdutoService } from '../services/produto.interface.service';
 import { ListarProdutoDTO } from '../dto/listar-produto.dto';
 import { CriarProdutoDTO } from '../dto/criar-produto.dto';
 import { AtualizarProdutoDTO } from '../dto/atualizar-produto.dto';
+import { Cache } from 'cache-manager';
+import { Produto } from '../domain/produto.entity';
 
 @Controller('/produtos')
 export class ProdutoController {
-	constructor(@Inject(IProdutoService) private readonly produtoService: IProdutoService) {}
+	constructor(
+		@Inject(IProdutoService) private readonly produtoService: IProdutoService,
+		@Inject(CACHE_MANAGER) private gerenciadorCache: Cache
+	) {}
 
 	@Get()
+	@UseInterceptors(CacheInterceptor)
 	async listar(): Promise<ListarProdutoDTO[]> {
 		return await this.produtoService.listar();
 	}
 
 	@Get('/:id')
-	@UseInterceptors(CacheInterceptor)
 	async obter(@Param('id') id: string): Promise<ListarProdutoDTO> {
-		return await this.produtoService.obter(id);
+		let produto = await this.gerenciadorCache.get<ListarProdutoDTO>(`produto-${id}`);
+
+		if (!produto) {
+			produto = await this.produtoService.obter(id);
+			await this.gerenciadorCache.set(`produto-${id}`, produto);
+		}
+
+		return produto;
 	}
 
 	@Post()

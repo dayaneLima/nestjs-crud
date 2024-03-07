@@ -10,6 +10,9 @@ docker-compose down
 
 # Entrar no terminal do container
 docker exec -it crud-nestjs bash
+
+# Informações do container
+docker inspect <ID do Container> OU <NOME do Container>
 ####################################
 
 ##########   BIBLIOTECAS  ##########
@@ -40,6 +43,9 @@ npm install -g @nestjs/cli
 
 # Cache
 npm install @nestjs/cache-manager cache-manager
+
+# Cache com redis
+npm install cache-manager-redis-yet
 ####################################
 
 ##########   COMANDOS  ##########
@@ -75,29 +81,33 @@ nest g resource pedido --no-spec
 # Extensão de dados randomicos para o vscode
 vscode-random
 
-# Redis GUI - Visualização de dados do Redis
+# Redis e Redis GUI - Visualização de dados do Redis
+
+## Redis GUI via instalação
 https://redis.com/redis-enterprise/redis-insight/
 
-version: '3'
-services:
-  redis:
+## Redis e Redis GUI via docker-compose
+
+redis:
     container_name: redis
-    image: redislabs/redismod
+    image: redis:7.2.4
     ports:
       - 6379:6379
-    #environment:
-    #- REDIS_PASSWORD: secret   
-    #- REDIS_REPLICATION_mode=master
-    #command
-      #- "--requirepass=mypassword"
-  redisinsight:
-    container_name: redisinsight
-    image: redislabs/redisinsight:latest
-    ports:
-      - '8001:8001'
     volumes:
-      - ./Users/ajeetraina/data/redisinsight:/db 
+      -  ./temp/redis:/data
+    networks:
+      - local
 
+redisinsight:
+    container_name: redisinsight
+    image: redislabs/redisinsight:1.14.0
+    restart: always
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./temp/redisinsight:/db 
+    networks:
+      - local
 
-chown -R 1001 redisinsight 
+* No container, ao abrir o redisinsight, para adicionar o database, use como host o nome do container, no exemplo acima, redis.
 ####################################

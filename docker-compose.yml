@@ -41,6 +41,27 @@ services:
     networks:
       - local
 
+  redis:
+    container_name: redis
+    image: redis:7.2.4
+    ports:
+      - "6379:6379"
+    volumes:
+      -  ./temp/redis:/data
+    networks:
+      - local
+
+  redisinsight:
+    container_name: redisinsight
+    image: redislabs/redisinsight:1.14.0
+    restart: always
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./temp/redisinsight:/db 
+    networks:
+      - local
+      
 networks: 
   local:
     name: local

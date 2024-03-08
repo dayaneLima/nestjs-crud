@@ -40,6 +40,10 @@ export class UsuarioRepository implements IUsuarioRepository {
 		return await this.usuarioTypeOrmRepository.findOneBy({ id });
 	}
 
+	public async obterPorEmail(email: string): Promise<Usuario | null> {
+		return await this.usuarioTypeOrmRepository.findOneBy({ email });
+	}
+
 	public async excluir(id: string): Promise<boolean> {
 		const itemDeletado = await this.usuarioTypeOrmRepository.delete(id);
 		return itemDeletado.affected != null && itemDeletado.affected > 0;

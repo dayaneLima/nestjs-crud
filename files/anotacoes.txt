@@ -50,6 +50,9 @@ npm install cache-manager-redis-yet
 # Criptografia
 npm install bcrypt
 npm install @types/bcrypt
+
+# JWT
+npm install @nestjs/jwt
 ####################################
 
 ##########   COMANDOS  ##########
@@ -85,6 +88,9 @@ No terminal digite:
 node [enter]
 const bcrypt = require('bcrypt'); [enter]
 bcrypt.genSaltSync(10); [enter]
+
+# Gerar guard
+nest g guard modules/autenticacao/autenticacao --no-spec
 ####################################
 
 ##########   FERRAMENTAS  ##########

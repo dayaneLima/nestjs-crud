@@ -1,9 +1,11 @@
-import { Controller, Inject, Get, Post, Body, Query, Param, Patch } from '@nestjs/common';
+import { Controller, Inject, Get, Post, Body, Query, Param, Patch, UseGuards } from '@nestjs/common';
 import { IPedidoService } from '../services/pedido.interface.service';
 import { CriarPedidoDTO } from '../dto/criar-pedido.dto';
 import { ListarPedidoDTO } from '../dto/listar-pedido.dto';
 import { AtualizarPedidoDTO } from '../dto/atualizar-pedido.dto';
+import { AutenticacaoGuard } from 'src/modules/autenticacao/guards/autenticacao.guard';
 
+@UseGuards(AutenticacaoGuard)
 @Controller('/pedidos')
 export class PedidoController {
 	constructor(@Inject(IPedidoService) private readonly pedidoService: IPedidoService) {}

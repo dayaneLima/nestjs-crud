@@ -10,6 +10,7 @@ import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionFilter } from './filters/all-exception.filter';
 import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-redis-yet';
+import { AutenticacaoModule } from './modules/autenticacao/autenticacao.module';
 
 @Module({
 	imports: [
@@ -24,7 +25,8 @@ import { redisStore } from 'cache-manager-redis-yet';
 		CoreModule,
 		UsuarioModule,
 		ProdutoModule,
-		PedidoModule
+		PedidoModule,
+		AutenticacaoModule
 	],
 	providers: [
 		{

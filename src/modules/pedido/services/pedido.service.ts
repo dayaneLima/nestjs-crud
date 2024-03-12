@@ -1,4 +1,4 @@
-import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { IPedidoService } from './pedido.interface.service';
 import { IPedidoRepository } from '../domain/pedido.interface.repository';
 import { CriarPedidoDTO } from '../dto/criar-pedido.dto';
@@ -77,11 +77,15 @@ export class PedidoService implements IPedidoService {
 		return pedidos.map((pedido) => this.converterPedidoParaListarPedidoDTO(pedido));
 	}
 
-	public async atualizar(id: string, pedidoDTO: AtualizarPedidoDTO): Promise<ListarPedidoDTO> {
+	public async atualizar(id: string, pedidoDTO: AtualizarPedidoDTO, usuarioId: string): Promise<ListarPedidoDTO> {
 		const pedido = await this.pedidoRepository.obter(id);
 
 		if (!pedido) {
 			throw new NotFoundException('Pedido não encontrado');
+		}
+
+		if (pedido.usuario.id !== usuarioId) {
+			throw new ForbiddenException('Você não tem autorização para atualizar esse pedido');
 		}
 
 		Object.assign(pedido, pedidoDTO as Pedido);

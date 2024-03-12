@@ -29,7 +29,8 @@ export class PedidoRepository implements IPedidoRepository {
 
 	public async obter(id: string): Promise<Pedido | null> {
 		return await this.pedidoTypeOrmRepository.findOne({
-			where: { id: id }
+			where: { id: id },
+			relations: { usuario: true }
 		});
 	}
 }

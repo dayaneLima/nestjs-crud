@@ -1,9 +1,12 @@
 import { Pedido } from '../../pedido/domain/pedido.entity';
 import { EntityCore } from '../../core/domain/entity.core';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, UpdateDateColumn } from 'typeorm';
+import { Exclude, Expose } from 'class-transformer';
 
+@Exclude()
 @Entity({ name: 'usuarios' })
 export class Usuario extends EntityCore {
+	@Expose()
 	@Column({ name: 'nome', length: 100, nullable: false })
 	nome: string;
 

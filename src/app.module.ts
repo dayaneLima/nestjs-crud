@@ -1,4 +1,4 @@
-import { ClassSerializerInterceptor, Module } from '@nestjs/common';
+import { ClassSerializerInterceptor, ConsoleLogger, Module } from '@nestjs/common';
 import { UsuarioModule } from './modules/usuario/usuario.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostgresConfigService } from './config/postgres.config.service';
@@ -7,10 +7,11 @@ import { CoreModule } from './modules/core/core.module';
 import { ProdutoModule } from './modules/produto/produto.module';
 import { PedidoModule } from './modules/pedido/pedido.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import { AllExceptionFilter } from './filters/all-exception.filter';
+import { AllExceptionFilter } from './resources/filters/all-exception.filter';
 import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-redis-yet';
 import { AutenticacaoModule } from './modules/autenticacao/autenticacao.module';
+import { LoggerGlobalInterceptor } from './resources/interceptors/logger-global.interceptor';
 
 @Module({
 	imports: [
@@ -36,11 +37,12 @@ import { AutenticacaoModule } from './modules/autenticacao/autenticacao.module';
 		{
 			provide: APP_INTERCEPTOR,
 			useClass: ClassSerializerInterceptor
-		}
-		// {
-		// 	provide: APP_INTERCEPTOR,
-		// 	useClass: LoggerGlobalInterceptor
-		// }
+		},
+		{
+			provide: APP_INTERCEPTOR,
+			useClass: LoggerGlobalInterceptor
+		},
+		ConsoleLogger
 	]
 })
 export class AppModule {}

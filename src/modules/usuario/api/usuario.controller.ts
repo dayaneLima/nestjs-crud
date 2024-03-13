@@ -3,7 +3,7 @@ import { IUsuarioService } from '../services/usuario.interface.service';
 import { CriarUsuarioDTO } from '../dto/criar-usuario.dto';
 import { ListarUsuarioDTO } from '../dto/listar-usuario.dto';
 import { AtualizarUsuarioDTO } from '../dto/atualizar-usuario.dto';
-import { CriptografarSenhaPipe } from 'src/pipes/criptografar-senha.pipe';
+import { CriptografarSenhaPipe } from '../../../resources/pipes/criptografar-senha.pipe';
 
 @Controller('/usuarios')
 export class UsuarioController {

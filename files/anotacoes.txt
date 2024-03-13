@@ -91,7 +91,9 @@ bcrypt.genSaltSync(10); [enter]
 
 # Gerar guard
 nest g guard modules/autenticacao/autenticacao --no-spec
-####################################
+
+# Gerar interceptor
+nest g itc interceptors/logger-global --no-spec
 
 ##########   FERRAMENTAS  ##########
 # Extensão de dados randomicos para o vscode

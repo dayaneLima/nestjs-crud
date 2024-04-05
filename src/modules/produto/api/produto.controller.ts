@@ -5,7 +5,6 @@ import { ListarProdutoDTO } from '../dto/listar-produto.dto';
 import { CriarProdutoDTO } from '../dto/criar-produto.dto';
 import { AtualizarProdutoDTO } from '../dto/atualizar-produto.dto';
 import { Cache } from 'cache-manager';
-import { Produto } from '../domain/produto.entity';
 
 @Controller('/produtos')
 export class ProdutoController {

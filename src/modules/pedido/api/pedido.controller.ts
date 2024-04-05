@@ -1,4 +1,4 @@
-import { Controller, Inject, Get, Post, Body, Query, Param, Patch, UseGuards, Req } from '@nestjs/common';
+import { Controller, Inject, Get, Post, Body, Param, Patch, UseGuards, Req } from '@nestjs/common';
 import { IPedidoService } from '../services/pedido.interface.service';
 import { CriarPedidoDTO } from '../dto/criar-pedido.dto';
 import { ListarPedidoDTO } from '../dto/listar-pedido.dto';

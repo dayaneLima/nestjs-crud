@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Inject, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { IUsuarioService } from '../services/usuario.interface.service';
 import { CriarUsuarioDTO } from '../dto/criar-usuario.dto';
 import { ListarUsuarioDTO } from '../dto/listar-usuario.dto';
 import { AtualizarUsuarioDTO } from '../dto/atualizar-usuario.dto';
 import { CriptografarSenhaPipe } from '../../../resources/pipes/criptografar-senha.pipe';
+import { AutenticacaoGuard } from 'src/modules/autenticacao/guards/autenticacao.guard';
 
+@UseGuards(AutenticacaoGuard)
 @Controller('/usuarios')
 export class UsuarioController {
 	constructor(@Inject(IUsuarioService) private readonly usuarioService: IUsuarioService) {}

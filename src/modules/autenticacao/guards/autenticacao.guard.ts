@@ -13,7 +13,7 @@ export class AutenticacaoGuard implements CanActivate {
 		const token = this.extrairTokenCabecalho(request);
 
 		if (!token) {
-			throw new UnauthorizedException('Erro de autenticação');
+			throw new UnauthorizedException('Token de autenticação não identificado');
 		}
 
 		try {

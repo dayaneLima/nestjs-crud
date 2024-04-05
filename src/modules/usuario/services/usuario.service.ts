@@ -56,6 +56,6 @@ export class UsuarioService implements IUsuarioService {
 	}
 
 	private converterUsuarioParaListarUsuarioDTO(usuario: Usuario): ListarUsuarioDTO {
-		return new ListarUsuarioDTO(usuario.id, usuario.nome, usuario.email);
+		return new ListarUsuarioDTO(usuario.id, usuario.nome);
 	}
 }

@@ -17,30 +17,6 @@
             "localRoot": "${workspaceFolder}",
             "remoteRoot": "/app",
             "sourceMaps": true
-
-            // "args": ["${workspaceFolder}/src/main.ts"],
-            // "runtimeArgs": ["--nolazy", "-r", "ts-node/register", "-r", "tsconfig-paths/register"],
-            // "sourceMaps": true,
-            // "envFile": "${workspaceFolder}/.env",
-            // "cwd": "${workspaceRoot}",
-            // "console": "integratedTerminal",
-            // "protocol": "inspector"
-
-            // "restart": true,
-            // "port": 9229,
-            // "address": "0.0.0.0",
-            // "localRoot": "${workspaceFolder}",
-            // "remoteRoot": "/app",
-            // // "protocol": "inspector",
-            // "skipFiles": ["<node_internals>/**"]
-            
-            // "skipFiles": [
-            //     "<node_internals>/**"
-            // ],
-            // "program": "${workspaceFolder}/src/resources/pipes/criptografar-senha.pipe.ts",
-            // "outFiles": [
-            //     "${workspaceFolder}/**/*.js"
-            // ]
         }
     ]
 }

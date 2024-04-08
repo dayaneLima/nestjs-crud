@@ -1,42 +1,24 @@
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
-import { ProdutoCaracteristicaDTO } from '../../../../../src/modules/produto/dto/produto-caracteristica.dto';
+import { CriarProdutoDTO } from '../../../../../src/modules/produto/dto/criar-produto.dto';
 
 describe('CriarProdutoDTO', () => {
-	it('deve ser válido com valores válidos', async () => {
+	it('deve ser inválido com valores obrigatórios não preenchidos', async () => {
 		// Arrange
-		const criarProdutoDTO = plainToInstance(ProdutoCaracteristicaDTO, {
+		const criarProdutoDTO = plainToInstance(CriarProdutoDTO, {
 			nome: '',
-			id: '',
-			descricao: ''
+			valor: 0,
+			quantidadeDisponivel: 0,
+			descricao: '',
+			caracteristicas: [],
+			imagens: [],
+			categoria: ''
 		});
 
 		// Act
 		const erros = await validate('CriarProdutoDTO', criarProdutoDTO);
-		console.log(typeof criarProdutoDTO, 'njkhjkbjbh');
-		console.log(criarProdutoDTO, 'njkhjkbjbh');
-		console.log(erros);
-		console.log(erros.length);
 
 		//Assert
-		expect(erros).toHaveLength(0);
+		expect(erros).toHaveLength(7);
 	});
-
-	// it('deve ser inválido com e-mail incorreto', async () => {
-	// 	// Arrange
-	// 	const criarUsuarioDTO = new CriarUsuarioDTO();
-	// 	criarUsuarioDTO.nome = 'dayane';
-	// 	criarUsuarioDTO.email = 'dayane';
-	// 	criarUsuarioDTO.senha = 'a';
-
-	// 	// Act
-	// 	const erros = await validate(criarUsuarioDTO);
-	// 	console.log(criarUsuarioDTO, 'njkhjkbjbh');
-	// 	console.log(erros);
-	// 	console.log(erros.length);
-
-	// 	//Assert
-	// 	expect(erros.length).not.toBe(0);
-	// 	// expect(JSON.stringify(erros)).toContain(`E-mail informado é inválido`);
-	// });
 });

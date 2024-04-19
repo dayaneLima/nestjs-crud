@@ -15,15 +15,27 @@ async function bootstrap() {
 		})
 	);
 
-	// eslint-disable-next-line prettier/prettier
 	const config = new DocumentBuilder()
 		.setTitle('API de E-commerce')
 		.setDescription('API de e-commerce feita em NestJs com TypeScript')
 		.setVersion('1.0')
+		.addBearerAuth({
+			bearerFormat: 'Bearer (apiKey)',
+			type: 'apiKey',
+			name: 'Authorization',
+			description: 'Autenticação baseada em Json Web Token (JWT)',
+			in: 'Header',
+			scheme: 'Bearer'
+		}, 'JWT Authorization')
 		.build();
 
 	const document = SwaggerModule.createDocument(app, config);
-	SwaggerModule.setup('swagger', app, document);
+	SwaggerModule.setup('swagger', app, document, {
+		swaggerOptions: {
+		  tagsSorter: 'alpha',
+		  operationsSorter: 'alpha',
+		},
+	  });
 
 	useContainer(app.select(AppModule), { fallbackOnErrors: true });
 	await app.listen(8080);

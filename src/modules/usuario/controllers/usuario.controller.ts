@@ -5,9 +5,10 @@ import { ListarUsuarioDTO } from '../dtos/listar-usuario.dto';
 import { AtualizarUsuarioDTO } from '../dtos/atualizar-usuario.dto';
 import { CriptografarSenhaPipe } from '../../../resources/pipes/criptografar-senha.pipe';
 import { AutenticacaoGuard } from 'src/modules/autenticacao/guards/autenticacao.guard';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('usuários')
+@ApiTags('usuarios')
+@ApiBearerAuth()
 @UseGuards(AutenticacaoGuard)
 @Controller('/usuarios')
 export class UsuarioController {

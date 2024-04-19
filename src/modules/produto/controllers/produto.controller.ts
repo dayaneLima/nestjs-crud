@@ -5,7 +5,10 @@ import { ListarProdutoDTO } from '../dtos/listar-produto.dto';
 import { CriarProdutoDTO } from '../dtos/criar-produto.dto';
 import { AtualizarProdutoDTO } from '../dtos/atualizar-produto.dto';
 import { Cache } from 'cache-manager';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('produtos')
+@ApiBearerAuth()
 @Controller('/produtos')
 export class ProdutoController {
 	constructor(

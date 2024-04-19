@@ -5,7 +5,10 @@ import { ListarPedidoDTO } from '../dtos/listar-pedido.dto';
 import { AtualizarPedidoDTO } from '../dtos/atualizar-pedido.dto';
 import { AutenticacaoGuard } from 'src/modules/autenticacao/guards/autenticacao.guard';
 import { RequestUsuario } from 'src/modules/autenticacao/valueObjects/request-usuario';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('pedidos')
+@ApiBearerAuth()
 @UseGuards(AutenticacaoGuard)
 @Controller('/pedidos')
 export class PedidoController {

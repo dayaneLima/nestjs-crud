@@ -4,7 +4,7 @@ import { IUsuarioRepository } from 'src/modules/usuario/domain/usuario.interface
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { UsuarioPayload } from '../valueObjects/usuario-payload';
-import { AcessTokenDTO } from '../dto/access-token.dto';
+import { AcessTokenDTO } from '../dtos/access-token.dto';
 
 @Injectable()
 export class AutenticacaoService implements IAutenticacaoService {

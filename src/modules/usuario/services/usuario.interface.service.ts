@@ -1,6 +1,6 @@
-import { AtualizarUsuarioDTO } from '../dto/atualizar-usuario.dto';
-import { CriarUsuarioDTO } from '../dto/criar-usuario.dto';
-import { ListarUsuarioDTO } from '../dto/listar-usuario.dto';
+import { AtualizarUsuarioDTO } from '../dtos/atualizar-usuario.dto';
+import { CriarUsuarioDTO } from '../dtos/criar-usuario.dto';
+import { ListarUsuarioDTO } from '../dtos/listar-usuario.dto';
 
 export interface IUsuarioService {
 	inserir(usuarioDTO: CriarUsuarioDTO): Promise<ListarUsuarioDTO>;

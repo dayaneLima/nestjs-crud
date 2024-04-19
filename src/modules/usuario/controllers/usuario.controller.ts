@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Inject, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { IUsuarioService } from '../services/usuario.interface.service';
-import { CriarUsuarioDTO } from '../dto/criar-usuario.dto';
-import { ListarUsuarioDTO } from '../dto/listar-usuario.dto';
-import { AtualizarUsuarioDTO } from '../dto/atualizar-usuario.dto';
+import { CriarUsuarioDTO } from '../dtos/criar-usuario.dto';
+import { ListarUsuarioDTO } from '../dtos/listar-usuario.dto';
+import { AtualizarUsuarioDTO } from '../dtos/atualizar-usuario.dto';
 import { CriptografarSenhaPipe } from '../../../resources/pipes/criptografar-senha.pipe';
 import { AutenticacaoGuard } from 'src/modules/autenticacao/guards/autenticacao.guard';
 

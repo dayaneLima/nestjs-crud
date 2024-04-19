@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UsuarioController } from './api/usuario.controller';
+import { UsuarioController } from './controllers/usuario.controller';
 import { UsuarioRepositoryProvider, UsuarioServiceProvider } from './providers/usuario.provider';
 import { EmailEhUnicoValidator } from './validations/email-eh-unico.validator';
 import { Usuario } from './domain/usuario.entity';

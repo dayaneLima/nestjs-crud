@@ -1,5 +1,5 @@
 import { validate } from 'class-validator';
-import { CriarUsuarioDTO } from '../../../../../src/modules/usuario/dto/criar-usuario.dto';
+import { CriarUsuarioDTO } from '../../../../../src/modules/usuario/dtos/criar-usuario.dto';
 
 describe('CriarUsuarioDTO', () => {
 	// it('deve ser válido com valores válidos', async () => {

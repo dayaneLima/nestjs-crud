@@ -1,5 +1,5 @@
 import { Controller, Post, Body, Inject } from '@nestjs/common';
-import { AutenticacaoDTO } from '../dto/autenticacao.dto';
+import { AutenticacaoDTO } from '../dtos/autenticacao.dto';
 import { IAutenticacaoService } from '../services/autenticacao.interface.service';
 
 @Controller('autenticacao')

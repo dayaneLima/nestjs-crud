@@ -1,8 +1,8 @@
 import { Controller, Inject, Get, Post, Body, Param, Patch, UseGuards, Req } from '@nestjs/common';
 import { IPedidoService } from '../services/pedido.interface.service';
-import { CriarPedidoDTO } from '../dto/criar-pedido.dto';
-import { ListarPedidoDTO } from '../dto/listar-pedido.dto';
-import { AtualizarPedidoDTO } from '../dto/atualizar-pedido.dto';
+import { CriarPedidoDTO } from '../dtos/criar-pedido.dto';
+import { ListarPedidoDTO } from '../dtos/listar-pedido.dto';
+import { AtualizarPedidoDTO } from '../dtos/atualizar-pedido.dto';
 import { AutenticacaoGuard } from 'src/modules/autenticacao/guards/autenticacao.guard';
 import { RequestUsuario } from 'src/modules/autenticacao/valueObjects/request-usuario';
 

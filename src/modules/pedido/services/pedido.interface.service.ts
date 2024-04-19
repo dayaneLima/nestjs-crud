@@ -1,6 +1,6 @@
-import { AtualizarPedidoDTO } from '../dto/atualizar-pedido.dto';
-import { CriarPedidoDTO } from '../dto/criar-pedido.dto';
-import { ListarPedidoDTO } from '../dto/listar-pedido.dto';
+import { AtualizarPedidoDTO } from '../dtos/atualizar-pedido.dto';
+import { CriarPedidoDTO } from '../dtos/criar-pedido.dto';
+import { ListarPedidoDTO } from '../dtos/listar-pedido.dto';
 
 export interface IPedidoService {
 	inserir(usuarioId: string, pedidoDTO: CriarPedidoDTO): Promise<ListarPedidoDTO>;

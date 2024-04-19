@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
-import { ProdutoImagemDTO } from '../../../../../src/modules/produto/dto/produto-imagem.dto';
+import { ProdutoImagemDTO } from '../../../../../src/modules/produto/dtos/produto-imagem.dto';
 
 describe('ProdutoImagemDTO', () => {
 	it('deve ser válido com valores válidos', async () => {

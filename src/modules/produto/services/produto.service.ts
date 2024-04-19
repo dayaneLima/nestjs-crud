@@ -2,9 +2,9 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { IProdutoService } from './produto.interface.service';
 import { Produto } from '../domain/produto.entity';
 import { IProdutoRepository } from '../domain/produto.interface.repository';
-import { ListarProdutoDTO } from '../dto/listar-produto.dto';
-import { CriarProdutoDTO } from '../dto/criar-produto.dto';
-import { AtualizarProdutoDTO } from '../dto/atualizar-produto.dto';
+import { ListarProdutoDTO } from '../dtos/listar-produto.dto';
+import { CriarProdutoDTO } from '../dtos/criar-produto.dto';
+import { AtualizarProdutoDTO } from '../dtos/atualizar-produto.dto';
 
 @Injectable()
 export class ProdutoService implements IProdutoService {

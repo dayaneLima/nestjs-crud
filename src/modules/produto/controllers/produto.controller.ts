@@ -1,9 +1,9 @@
 import { Controller, Inject, Get, Post, Put, Delete, Param, Body, UseInterceptors } from '@nestjs/common';
 import { CACHE_MANAGER, CacheInterceptor } from '@nestjs/cache-manager';
 import { IProdutoService } from '../services/produto.interface.service';
-import { ListarProdutoDTO } from '../dto/listar-produto.dto';
-import { CriarProdutoDTO } from '../dto/criar-produto.dto';
-import { AtualizarProdutoDTO } from '../dto/atualizar-produto.dto';
+import { ListarProdutoDTO } from '../dtos/listar-produto.dto';
+import { CriarProdutoDTO } from '../dtos/criar-produto.dto';
+import { AtualizarProdutoDTO } from '../dtos/atualizar-produto.dto';
 import { Cache } from 'cache-manager';
 
 @Controller('/produtos')

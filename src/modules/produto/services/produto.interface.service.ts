@@ -1,6 +1,6 @@
-import { AtualizarProdutoDTO } from '../dto/atualizar-produto.dto';
-import { CriarProdutoDTO } from '../dto/criar-produto.dto';
-import { ListarProdutoDTO } from '../dto/listar-produto.dto';
+import { AtualizarProdutoDTO } from '../dtos/atualizar-produto.dto';
+import { CriarProdutoDTO } from '../dtos/criar-produto.dto';
+import { ListarProdutoDTO } from '../dtos/listar-produto.dto';
 
 export interface IProdutoService {
 	inserir(produtoDTO: CriarProdutoDTO): Promise<ListarProdutoDTO>;

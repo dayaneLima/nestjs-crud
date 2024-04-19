@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
-import { CriarProdutoDTO } from '../../../../../src/modules/produto/dto/criar-produto.dto';
+import { CriarProdutoDTO } from '../../../../../src/modules/produto/dtos/criar-produto.dto';
 
 describe('CriarProdutoDTO', () => {
 	it('deve ser inválido com valores obrigatórios não preenchidos', async () => {

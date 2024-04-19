@@ -1,14 +1,14 @@
 import { BadRequestException, ForbiddenException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { IPedidoService } from './pedido.interface.service';
 import { IPedidoRepository } from '../domain/pedido.interface.repository';
-import { CriarPedidoDTO } from '../dto/criar-pedido.dto';
-import { ListarPedidoDTO } from '../dto/listar-pedido.dto';
+import { CriarPedidoDTO } from '../dtos/criar-pedido.dto';
+import { ListarPedidoDTO } from '../dtos/listar-pedido.dto';
 import { Pedido } from '../domain/pedido.entity';
 import { StatusPedido } from '../valueObjects/status-pedido.enum';
 import { IUsuarioRepository } from 'src/modules/usuario/domain/usuario.interface.repository';
 import { ItemPedido } from '../domain/item-pedido.entity';
 import { IProdutoRepository } from '../../produto/domain/produto.interface.repository';
-import { AtualizarPedidoDTO } from '../dto/atualizar-pedido.dto';
+import { AtualizarPedidoDTO } from '../dtos/atualizar-pedido.dto';
 import { Produto } from 'src/modules/produto/domain/produto.entity';
 
 @Injectable()

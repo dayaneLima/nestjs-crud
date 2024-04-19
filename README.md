@@ -2,6 +2,35 @@
 
 Este repositório contém a estrutura e os arquivos essenciais para uma aplicação de e-commerce, desenvolvida com o framework NestJs, utilizando TypeScript e Docker para a orquestração de contêineres.
 
+## Estrutura de pastas
+
+- **files**: Contém algumas anotações.
+- **src**: Código fonte da aplicação
+- **test**: Testes da aplicação.
+- **temp**: Pasta não rastreada pelo git, usada pelos contêineres para armazenamento de dados.
+
+## Containeres
+
+Os containers são divididos da seguinte forma:
+
+- **crud-nestjs**:
+  - Aplicação deste projeto. 
+  - Executa na porta 8080.
+- **postgres**: 
+  - Banco de dados para a aplicação.
+  - Executa na porta 5432.
+- **pgadmin**: 
+  - Não é necessária sua execução para a aplicação 
+  - Interface web para visualizar registros no Postgres. 
+  - Executa na porta externa 8010 e interna 8081.
+- **redis**: 
+  - Redis para cache. 
+  - Executa na porta 6379.
+- **redisinsight**: 
+  - Não é necessária sua execução para a aplicação 
+  - Interface web para visualizar registros no Redis. 
+  - Executa na porta externa 8010 e interna 8001.
+
 ## Tecnologias Utilizadas
 
 - **NestJs**: Principal framework utilizado na aplicação.
@@ -19,6 +48,7 @@ Além das bibliotecas padrão do NestJs, foram empregadas outras para desenvolvi
 - **nestjs/jwt**: Implementação de autenticação baseada em tokens JWT.
 - **jest**: Framework de teste para TypeScript.
 - **nestjs/config**: Facilita o uso de arquivo de configuração, evitando configurações estáticas no código.
+- **swagger**: Usada para definir, documentar e consumir APIs REST. 
 
 ## Padrões e Práticas de Desenvolvimento
 

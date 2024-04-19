@@ -67,7 +67,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
--- Execução dos testes
+- Execução dos testes
 
 ```bash
 # unit tests

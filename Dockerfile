@@ -35,6 +35,12 @@ CMD tail -f /dev/null
 # Caso 3: Descomentar somente após a aplicação base ser criada
 # CMD npm install && npm run dev
 
+# Ambiente de stage
+FROM base as stage
+COPY . .
+WORKDIR /app
+EXPOSE 8080 9229
+CMD npm install && npm run build && npm run typeorm migration:run && npm run start:dev
 
 # Ambiente de produção
 FROM base as production

@@ -6,15 +6,19 @@ services:
     container_name: crud-nestjs
     build:
       context: ./
-      # target: "production"
-      target: "development"
+      target: "stage"
+      # target: "development"
     volumes:
       - ./:/app
     ports:
       - "8080:8080"
       - "9229:9229"
+    depends_on:
+      - postgres
+      - redis
     networks: 
-      - local      
+      - local    
+
   postgres:
     container_name: postgres
     image: postgres:latest
@@ -22,6 +26,7 @@ services:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       PGDATA: /data/postgres
+      POSTGRES_DB: ${DB_NAME}
     volumes:
       - ./temp/postgres:/data/postgres
     ports:

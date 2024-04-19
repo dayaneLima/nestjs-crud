@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 export class CriarTabelas1709249659006 implements MigrationInterface {
 	name = 'CriarTabelas1709249659006';
@@ -10,6 +11,10 @@ export class CriarTabelas1709249659006 implements MigrationInterface {
 		await queryRunner.query(`CREATE TABLE "usuarios" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "nome" character varying(100) NOT NULL, "email" character varying(70) NOT NULL, "senha" character varying(255) NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "deleted_at" TIMESTAMP, CONSTRAINT "PK_d7281c63c176e152e4c531594a8" PRIMARY KEY ("id"))`);
 		await queryRunner.query(`ALTER TABLE "produto_imagens" ADD CONSTRAINT "FK_eb1531605709dd94ec67b2141d0" FOREIGN KEY ("produtoId") REFERENCES "produtos"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
 		await queryRunner.query(`ALTER TABLE "produto_caracteristicas" ADD CONSTRAINT "FK_67339e59ab4b3ed091cf318f426" FOREIGN KEY ("produtoId") REFERENCES "produtos"("id") ON DELETE CASCADE ON UPDATE CASCADE`);
+
+		const sal = '$2b$10$mH2JcKdhKwkCzE44B1Tcyu';
+		const senha = await bcrypt.hash('teste', sal!);
+		await queryRunner.query(`INSERT INTO usuarios(nome,email,senha) VALUES ('Teste', 'teste@teste.com', '${senha}')`);
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {

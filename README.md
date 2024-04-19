@@ -69,6 +69,12 @@ Para manter a estrutura organizada e escalável, foram adotados diversos padrõe
 docker-compose build
 ```
 
+- Target
+
+  Se o target do arquivo docker-compose.yml para o service de crud-nestjs for definido como 'stage', as migrations serão executadas e a aplicação será inicializada automaticamente.
+
+  Se o target definido como 'development', as dependências devem ser instaladas, as migrations devem ser executadas e a aplicação deve ser iniciada manualmente.
+
 - Execute o comando para subir os containers:
 ```
 docker-compose up -d
@@ -109,6 +115,10 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+- Usuário inicial
+
+  Ao executar a migration, é criado um usuário de e-mail teste@teste.com e senha teste.
 
 ## Observações
 
